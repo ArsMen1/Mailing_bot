@@ -1,0 +1,4 @@
+*.txt
+api_google_bot/.env
+token.json
+credentials.json
