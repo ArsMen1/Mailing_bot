@@ -1,29 +1,13 @@
-import os
-import sys
 import time
-from loguru import logger
 from datetime import datetime
 
-from telegram.error import BadRequest, InvalidToken
+from loguru import logger
 from telegram import InlineKeyboardMarkup, ParseMode, KeyboardButton, ReplyKeyboardMarkup
-from telegram.ext import Updater, CallbackQueryHandler, ConversationHandler, CommandHandler, MessageHandler, Filters
+from telegram.error import BadRequest
+from telegram.ext import CallbackQueryHandler, ConversationHandler, CommandHandler, MessageHandler, Filters
 
-from dotenv import load_dotenv
-
-from shp_mailing_bot.config import CNC_SPREADSHEET_CELLS_RANGE, INITIAL_GREETING_MESSAGE
+from shp_mailing_bot.config import CNC_SPREADSHEET_CELLS_RANGE, INITIAL_GREETING_MESSAGE, CNC_SPREADSHEET_ID
 from shp_mailing_bot.google_auth import authorize
-
-load_dotenv()
-CNC_SPREADSHEET_ID = os.getenv('CNC_SPREADSHEET_ID')
-TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
-
-logger.add(
-    'debug.log',
-    encoding="utf8",
-    format='TIME: {time:DD-MM-YYYY at HH:mm:ss} LEVEL: {level} MESSAGE: {message}',
-    rotation='10 MB',
-    compression='zip'
-)
 
 IND_MAILING, SHEET_ID, LIST_NAME, COL_RANGE, INTERRUPT = range(5)
 
@@ -56,7 +40,9 @@ def check_access(update, context) -> bool:
 
     :param update: событие обновления
     :param context: контекст события
+    :todo: Определить, зачем эта функция подключена в качестве handler'а
     """
+    logger.debug('Запущена команда /check_access')
     try:
         chat_member = context.bot.getChatMember(-589285277, update.message.chat_id)
         return chat_member.status in ['administrator', 'creator', 'member']
@@ -239,18 +225,3 @@ def init_dispatcher(updater):
     )
     dispatcher.add_handler(conv_handler)
     logger.info('Диспетчер запросов успешно инициализирован')
-
-
-def init_telegram():
-    try:
-        logger.debug('Запуск')
-        logger.debug('Подключение к telegram API...')
-        updater = Updater(token=TELEGRAM_BOT_TOKEN)
-        logger.info('Подключение к telegram API установлено.')
-        init_dispatcher(updater)
-        logger.info('Bot start polling')
-        updater.start_polling()
-        updater.idle()
-    except InvalidToken as ex:
-        logger.critical('В настройках бота указан некорректный токен. Дальнейшая работа бота невозможна, выключение.')
-        sys.exit(1)

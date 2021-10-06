@@ -1,3 +1,12 @@
+import os
+
+from dotenv import load_dotenv
+
+# Environment config
+load_dotenv()
+CNC_SPREADSHEET_ID = os.getenv('CNC_SPREADSHEET_ID')
+TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
+
 # Google Sheets API config
 GOOGLE_SHEET_API_AUTH_SCOPE_URL = 'https://www.googleapis.com/auth/spreadsheets.readonly'
 CNC_SPREADSHEET_CELLS_RANGE = 'Data!A1:А13'

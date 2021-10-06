@@ -8,23 +8,22 @@ from googleapiclient.discovery import build
 
 from shp_mailing_bot.config import GOOGLE_SHEET_API_AUTH_SCOPE_URL
 
-# If modifying these scopes, delete the file token.json.
+# При изменении адреса в этой переменной - удалите фал token.json
 SCOPES = [GOOGLE_SHEET_API_AUTH_SCOPE_URL]
 
 
 def authorize():
     """
-    Shows basic usage of the Sheets API.
-    Prints values from a sample spreadsheet.
+    Авторизация в гугл-таблицах.
+    Возвращает инстанс таблиц в случае успешной авторизации
     """
     credentials = None
 
-    # The file token.json stores the user's access and refresh tokens, and is
-    # created automatically when the authorization flow completes for the first time.
+    # Сначала пытаемся получить данные из файла token.json. В нём хранятся данные после первой авторизации
     if os.path.exists('token.json'):
         credentials = Credentials.from_authorized_user_file('token.json', SCOPES)
 
-    # If there are no (valid) credentials available, let the user log in.
+    # Если такого файла нет - пытаемся залогиниться
     if not credentials or not credentials.valid:
         if credentials and credentials.expired and credentials.refresh_token:
             credentials.refresh(Request())
@@ -32,14 +31,9 @@ def authorize():
             flow = InstalledAppFlow.from_client_secrets_file('credentials.json', SCOPES)
             credentials = flow.run_local_server(port=0)
 
-        # Save the credentials for the next run
+        # Сохраняем данные авторизации в файл token.json
         with open('token.json', 'w') as token:
             token.write(credentials.to_json())
 
-    service = build('sheets', 'v4', credentials=credentials)
-    return service
-
-
-# Используется только один раз для получения файла token.json
-if __name__ == '__main__':
-    authorize()
+    # Собираем инстанс таблиц
+    return build('sheets', 'v4', credentials=credentials)
