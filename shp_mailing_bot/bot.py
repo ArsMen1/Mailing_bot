@@ -1,28 +1,26 @@
 import os
-from os.path import join, dirname
+import sys
 import time
 from loguru import logger
 from datetime import datetime
-from google_oath import authorizate
-from telegram.error import BadRequest
+
+from telegram.error import BadRequest, InvalidToken
 from telegram import InlineKeyboardMarkup, ParseMode, KeyboardButton, ReplyKeyboardMarkup
 from telegram.ext import Updater, CallbackQueryHandler, ConversationHandler, CommandHandler, MessageHandler, Filters
 
 from dotenv import load_dotenv
 
-dotenv_path = join(dirname(__file__), '.env')
-load_dotenv(dotenv_path)
+from shp_mailing_bot.config import CNC_SPREADSHEET_CELLS_RANGE, INITIAL_GREETING_MESSAGE
+from shp_mailing_bot.google_auth import authorize
 
-
-# The ID and range of a sample spreadsheet.
-MAIN_SPREADSHEET_ID = os.getenv('READ_SPREADSHEET2')
-BOT_TOKEN = os.getenv('BOT_TOKEN_TEST')
-RANGE_NAME = 'Data!A1:А13'
+load_dotenv()
+CNC_SPREADSHEET_ID = os.getenv('CNC_SPREADSHEET_ID')
+TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 
 logger.add(
     'debug.log',
     encoding="utf8",
-    format='TIME: {time} LEVEL: {level} MESSAGE: {message}',
+    format='TIME: {time:DD-MM-YYYY at HH:mm:ss} LEVEL: {level} MESSAGE: {message}',
     rotation='10 MB',
     compression='zip'
 )
@@ -35,13 +33,12 @@ interrupt_markup = ReplyKeyboardMarkup(interrupt_keyboard, resize_keyboard=True,
 
 def read_data(sheets_service):
     sheet = sheets_service.spreadsheets()
-    result = sheet.values().get(spreadsheetId=MAIN_SPREADSHEET_ID, range=RANGE_NAME).execute()
+    result = sheet.values().get(spreadsheetId=CNC_SPREADSHEET_ID, range=CNC_SPREADSHEET_CELLS_RANGE).execute()
     values = result.get('values', [])
     return values
 
 
 def read_nps(sheet_data, chat_id):
-    print(sheet_data, chat_id)
     nps = None
     for row in sheet_data:
         if row[0] == str(chat_id):
@@ -51,7 +48,15 @@ def read_nps(sheet_data, chat_id):
     return nps
 
 
-def check_access(update, context):
+def check_access(update, context) -> bool:
+    """
+    Проверка прав доступа у пользователя, запускающего команду рассылки
+
+    Если пользователь присутствует в чате и имеет роль админа/создателя/участника - возвращается True. Иначе False
+
+    :param update: событие обновления
+    :param context: контекст события
+    """
     try:
         chat_member = context.bot.getChatMember(-589285277, update.message.chat_id)
         return chat_member.status in ['administrator', 'creator', 'member']
@@ -77,11 +82,13 @@ def send_messages(context):
             i += 1
             message.edit_text(f'Отправил сообщений: {i}')
             time.sleep(0.1)
-    message = context.bot.send_message(query.from_user.id, text='Рассылка завершена')
+    context.bot.send_message(query.from_user.id, text='Рассылка завершена')
 
 
 def button(update, context) -> None:
-    """Parses the CallbackQuery and updates the message text."""
+    """
+    [Предположительно] Обработчик нажатия кнопки на виртуальной клавиатуре (там, где две кнопки).
+    """
     query = update.callback_query
     query.answer()
     if query.data == 'NPS':
@@ -91,6 +98,9 @@ def button(update, context) -> None:
 
 
 def start_command(update, context):
+    """
+    Обработчик команды `/start`
+    """
     is_admin = check_access(update, context)
     keyboard_user = [
         [
@@ -105,18 +115,14 @@ def start_command(update, context):
         update.message.reply_text('Выберите команду', reply_markup=reply_markup_admin)
     else:
         update.message.reply_text(
-            '\n\n'.join([
-                '👋🏻 Привет, преподаватель Школы программистов!'
-                '*Этот бот был разработан, чтобы оперативно доставлять всю важную информацию лично тебе!*'
-                'Совсем скоро сюда начнут приходить первые сообщения – не пропусти их 😉'
-            ]),
+            INITIAL_GREETING_MESSAGE,
             reply_markup=reply_markup_user,
             parse_mode=ParseMode.MARKDOWN
         )
 
 
 def get_group_sheet(user_data):
-    service = authorizate()
+    service = authorize()
     sheet = service.spreadsheets()
     lst = user_data['list_id']
     result = sheet.values().get(spreadsheetId=user_data['sheet_id'], range=f'{lst}!A1:K1000').execute()
@@ -156,16 +162,17 @@ def add_list_name(update, context):
 
 
 def add_col_range(update, context):
-    now = datetime.now()
-    dt_string = now.strftime("%d.%m.%Y %H:%M:%S")
-    file_name = f'Рассылка {dt_string}.txt'
-    f = open(file_name, "w")
+    """
+    [Предположительно] Организация рассылки по списку сообщений
+    """
+    status_file_name = f'Рассылка {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}.txt'
+    status_file = open(status_file_name, "w")
     text = update.message.text
     context.user_data['col_range'] = text
     data = get_group_sheet(context.user_data)
     message = context.bot.send_message(update.effective_chat.id, text='Начинаю отправлять сообщения...')
-    send = 0
-    not_send = 0
+    send_messages_amount = 0
+    not_send_messages_amount = 0
     chat_id_ind = data[0].index('chat id')
     user_name_ind = data[0].index('user')
     begin_ind, end_ind = tuple(map(int, context.user_data['col_range'].split(' ')))
@@ -174,18 +181,17 @@ def add_col_range(update, context):
             text = ' '.join(row[begin_ind:end_ind + 1])
             try:
                 context.bot.send_message(row[chat_id_ind], text=text, parse_mode=ParseMode.MARKDOWN)
-                send += 1
-                message.edit_text(f'Отправляю сообщения... Уже отправил: {send}')
-            except:
-                f.write(row[user_name_ind])
-                f.write(' — ')
-                f.write(row[chat_id_ind])
-                f.write('\n')
-                not_send += 1
+                send_messages_amount += 1
+                message.edit_text(f'Отправляю сообщения... Уже отправил: {send_messages_amount}')
+            except Exception as ex:
+                status_file.write(f'{row[user_name_ind]} - {row[chat_id_ind]}\n')
+                not_send_messages_amount += 1
+                logger.error(f'Ошибка отправки сообщения. Детали: {ex}')
             time.sleep(0.1)
-    message.edit_text(f'Отправка завершена! Отправлено сообщений: {send}')
-    update.message.reply_text(f'Не отправлено сообщений: {not_send}')
-    f.close()
+    message.edit_text(f'Отправка завершена! Отправлено сообщений: {send_messages_amount}')
+    logger.info(f'Отправка завершена! Отправлено сообщений: {send_messages_amount}')
+    update.message.reply_text(f'Не отправлено сообщений: {not_send_messages_amount}')
+    status_file.close()
     return ConversationHandler.END
 
 
@@ -199,18 +205,23 @@ def stop_conversation(update, context):
     return ConversationHandler.END
 
 
-def init_telegram():
-    updater = Updater(token=BOT_TOKEN)
+def init_dispatcher(updater):
+    """
+    Задание структуры бота (тех команд, на которые он будет способен реагировать)
+    """
+    logger.debug('Ининциализация диспетчера запросов')
     dispatcher = updater.dispatcher
 
-    start_handler = CommandHandler('start', start_command)
-    dispatcher.add_handler(start_handler)
+    logger.debug('Добавление команды /start')
+    dispatcher.add_handler(CommandHandler('start', start_command))
 
-    start_handler = CommandHandler('check_access', check_access)
-    dispatcher.add_handler(start_handler)
+    logger.debug('Добавление команды /check_access')
+    dispatcher.add_handler(CommandHandler('check_access', check_access))
 
+    logger.debug('Добавление обработки кнопок')
     dispatcher.add_handler(CallbackQueryHandler(button))
 
+    logger.debug('Добавление команды /start2')
     states = {
         IND_MAILING: [MessageHandler(Filters.regex('^Групповая рассылка$'), ind_mailing)],
         SHEET_ID: [MessageHandler(Filters.regex('^(?!Завершить разговор).*$'), add_sheet_id)],
@@ -218,19 +229,28 @@ def init_telegram():
         COL_RANGE: [MessageHandler(Filters.regex('^(?!Завершить разговор).*$'), add_col_range)],
     }
     conv_handler = ConversationHandler(
-        entry_points=[CommandHandler('start2', start2)],
+        entry_points=[
+            CommandHandler('start2', start2)
+        ],
         states=states,
         fallbacks=[
             MessageHandler(Filters.regex('^Завершить разговор$'), stop_conversation)
         ]
     )
     dispatcher.add_handler(conv_handler)
-
-    logger.info('Bot start polling')
-    updater.start_polling()
-
-    updater.idle()
+    logger.info('Диспетчер запросов успешно инициализирован')
 
 
-if __name__ == "__main__":
-    init_telegram()
+def init_telegram():
+    try:
+        logger.debug('Запуск')
+        logger.debug('Подключение к telegram API...')
+        updater = Updater(token=TELEGRAM_BOT_TOKEN)
+        logger.info('Подключение к telegram API установлено.')
+        init_dispatcher(updater)
+        logger.info('Bot start polling')
+        updater.start_polling()
+        updater.idle()
+    except InvalidToken as ex:
+        logger.critical('В настройках бота указан некорректный токен. Дальнейшая работа бота невозможна, выключение.')
+        sys.exit(1)
