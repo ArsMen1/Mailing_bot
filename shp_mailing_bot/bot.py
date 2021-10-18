@@ -6,7 +6,8 @@ from telegram import InlineKeyboardMarkup, ParseMode, KeyboardButton, ReplyKeybo
 from telegram.error import BadRequest
 from telegram.ext import CallbackQueryHandler, ConversationHandler, CommandHandler, MessageHandler, Filters
 
-from shp_mailing_bot.config import CNC_SPREADSHEET_CELLS_RANGE, INITIAL_GREETING_MESSAGE, CNC_SPREADSHEET_ID
+from shp_mailing_bot.config import CNC_SPREADSHEET_CELLS_RANGE, INITIAL_GREETING_MESSAGE, CNC_SPREADSHEET_ID, \
+    SUPER_ADMINS
 from shp_mailing_bot.google_auth import authorize
 
 IND_MAILING, SHEET_ID, LIST_NAME, COL_RANGE, INTERRUPT = range(5)
@@ -45,19 +46,21 @@ def check_access(update, context) -> bool:
     logger.debug('Запущена команда /check_access')
     try:
         chat_member = context.bot.getChatMember(-589285277, update.message.chat_id)
+        print(f"{chat_member=}")
         return chat_member.status in ['administrator', 'creator', 'member']
     except BadRequest:
+
         return False
 
 
-def send_nps(context):
+def send_nps(context) -> None:
     job = context.job
     context_data = job.context
     nps = read_nps(context.bot_data['sheet_data'], context_data)
     context.bot.send_message(context_data, text=nps)
 
 
-def send_messages(context):
+def send_messages(context) -> None:
     job = context.job
     query = job.context
     message = context.bot.send_message(query.from_user.id, text='Начинаю отправлять сообщения')
@@ -83,7 +86,7 @@ def button(update, context) -> None:
         context.job_queue.run_once(send_messages, 0, context=query)
 
 
-def start_command(update, context):
+def start_command(update, context) -> None:
     """
     Обработчик команды `/start`
     """
@@ -116,7 +119,7 @@ def get_group_sheet(user_data):
     return values
 
 
-def start2(update, context):
+def start2(update):
     keyboard = [
         ['Индивидуальная рассылка'],
         ['Групповая рассылка']
@@ -149,45 +152,66 @@ def add_list_name(update, context):
 
 def add_col_range(update, context):
     """
-    [Предположительно] Организация рассылки по списку сообщений
+    Организация рассылки по списку сообщений
     """
-    status_file_name = f'Рассылка {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}.txt'
-    status_file = open(status_file_name, "w")
+
     text = update.message.text
     context.user_data['col_range'] = text
     data = get_group_sheet(context.user_data)
     message = context.bot.send_message(update.effective_chat.id, text='Начинаю отправлять сообщения...')
     send_messages_amount = 0
-    not_send_messages_amount = 0
+    who_message_was_not_sent_to = []
     chat_id_ind = data[0].index('chat id')
     user_name_ind = data[0].index('user')
     begin_ind, end_ind = tuple(map(int, context.user_data['col_range'].split(' ')))
+
     for row in data:
         if len(row) > chat_id_ind and row[chat_id_ind].isdigit():
             text = ' '.join(row[begin_ind:end_ind + 1])
+            logger.info(row[begin_ind:end_ind + 1])
+            logger.info(text)
+            time.sleep(0.1)
             try:
                 context.bot.send_message(row[chat_id_ind], text=text, parse_mode=ParseMode.MARKDOWN)
                 send_messages_amount += 1
                 message.edit_text(f'Отправляю сообщения... Уже отправил: {send_messages_amount}')
+            except BadRequest as ex:
+                who_message_was_not_sent_to.append(row[user_name_ind])
+                logger.error(f'Ошибка отправки сообщения. Детали: {ex}. Пользователь {row[user_name_ind]}')
+                # todo: доработать другую обработку разных исключений
             except Exception as ex:
-                status_file.write(f'{row[user_name_ind]} - {row[chat_id_ind]}\n')
-                not_send_messages_amount += 1
-                logger.error(f'Ошибка отправки сообщения. Детали: {ex}')
-            time.sleep(0.1)
-    message.edit_text(f'Отправка завершена! Отправлено сообщений: {send_messages_amount}')
-    logger.info(f'Отправка завершена! Отправлено сообщений: {send_messages_amount}')
-    update.message.reply_text(f'Не отправлено сообщений: {not_send_messages_amount}')
-    status_file.close()
+                who_message_was_not_sent_to.append(row[user_name_ind])
+                logger.error(f'Ошибка отправки сообщения. Детали: {ex}. Пользователь {row[user_name_ind]}')
+
+    logger.info(f'Отправка завершена. Отправлено сообщений: {send_messages_amount}')
+    logger.info(f'Не отправлено {who_message_was_not_sent_to}')
+
+    if who_message_was_not_sent_to:
+        message.edit_text(f'Отправка завершена. \n\nОтправлено сообщений: {send_messages_amount}' + ".\n" +
+                          f'Не отправлено сообщений: {len(who_message_was_not_sent_to)}\n' +
+                          'Кому не было отправлено:\n' + ",\n".join(who_message_was_not_sent_to) + "." + "\n👉🏻👈🏻")
+    else:
+        message.edit_text(f'Отправка завершена. \n\nОтправлено сообщений: {send_messages_amount}. \n' +
+                          f'Все сообщения были отправлены 😎')
+
+    # superadmins mailing
+    for admin_name, admin_id in SUPER_ADMINS.items():
+        context.bot.send_message(admin_id,
+                                 text="*Уведомление о рассылке*📨\n\n" +
+                                      f"*Отправитель*: @{update.message.from_user.username}\n\n" +
+                                      f"*Сообщение:* \n{text}",
+                                 parse_mode=ParseMode.MARKDOWN)
+
     return ConversationHandler.END
 
 
 def back_to_menu(update, context):
     context.user_data.clear()
-    start2(update, context)
+    start2(update)
 
 
-def stop_conversation(update, context):
-    update.message.reply_text("Bye!")
+def stop_conversation(update):
+    update.message.reply_text("Пока-пока")
     return ConversationHandler.END
 
 

@@ -17,7 +17,9 @@ def main():
         logger.debug('Подключение к telegram API...')
         updater = Updater(token=TELEGRAM_BOT_TOKEN)
         logger.info('Подключение к telegram API установлено.')
+
         init_dispatcher(updater)
+
         logger.info('Бот запущен')
         updater.start_polling()
         updater.idle()
