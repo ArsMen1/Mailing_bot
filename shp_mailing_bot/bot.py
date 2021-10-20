@@ -210,7 +210,7 @@ def back_to_menu(update, context):
     start2(update)
 
 
-def stop_conversation(update):
+def stop_conversation(update, context):
     update.message.reply_text("Пока-пока")
     return ConversationHandler.END
 

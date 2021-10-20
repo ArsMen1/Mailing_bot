@@ -1,4 +1,4 @@
-# SHP Mailing Bot
+~~~~~~~~**_~~````# SHP Mailing Bot
 
 Telegram-бот для рассылки сообщений преподавателям Московской Школы Программистов.
 
@@ -49,4 +49,5 @@ docker stop <container id>
 ### Документация по библиотекам
 - Telegram: [https://python-telegram-bot.readthedocs.io](https://python-telegram-bot.readthedocs.io)
 - Google Sheets: [https://developers.google.com/docs/api/quickstart/python](https://developers.google.com/docs/api/quickstart/python)
-- Loguru: [https://github.com/Delgan/loguru](https://github.com/Delgan/loguru)
+- Loguru: [https://github.com/Delgan/loguru](https://github.com/Delgan/loguru)~~~~~~~~**_~~
+````
