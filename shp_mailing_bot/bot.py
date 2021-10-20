@@ -119,7 +119,7 @@ def get_group_sheet(user_data):
     return values
 
 
-def start2(update):
+def start2(update, context):
     keyboard = [
         ['Индивидуальная рассылка'],
         ['Групповая рассылка']
