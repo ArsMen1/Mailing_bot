@@ -159,6 +159,7 @@ def add_col_range(update, context):
     context.user_data['col_range'] = text
     data = get_group_sheet(context.user_data)
     message = context.bot.send_message(update.effective_chat.id, text='Начинаю отправлять сообщения...')
+    recipients_success = []
     send_messages_amount = 0
     who_message_was_not_sent_to = []
     chat_id_ind = data[0].index('chat id')
@@ -174,6 +175,7 @@ def add_col_range(update, context):
             try:
                 context.bot.send_message(row[chat_id_ind], text=text, parse_mode=ParseMode.MARKDOWN)
                 send_messages_amount += 1
+                recipients_success.append(row[user_name_ind])
                 message.edit_text(f'Отправляю сообщения... Уже отправил: {send_messages_amount}')
             except BadRequest as ex:
                 who_message_was_not_sent_to.append(row[user_name_ind])
@@ -187,19 +189,21 @@ def add_col_range(update, context):
     logger.info(f'Не отправлено {who_message_was_not_sent_to}')
 
     if who_message_was_not_sent_to:
-        message.edit_text(f'Отправка завершена. \n\nОтправлено сообщений: {send_messages_amount}' + ".\n" +
-                          f'Не отправлено сообщений: {len(who_message_was_not_sent_to)}\n' +
+        message.edit_text(f'*Отправка завершена.* \n\nОтправлено сообщений: {send_messages_amount}' + ".\n" +
+                          f'Не отправлено сообщений: {len(who_message_was_not_sent_to)}.\n\n' +
                           'Кому не было отправлено:\n' + ",\n".join(who_message_was_not_sent_to) + "." + "\n👉🏻👈🏻")
     else:
         message.edit_text(f'Отправка завершена. \n\nОтправлено сообщений: {send_messages_amount}. \n' +
                           f'Все сообщения были отправлены 😎')
 
+
     # superadmins mailing
     for admin_name, admin_id in SUPER_ADMINS.items():
         context.bot.send_message(admin_id,
-                                 text="*Уведомление о рассылке*📨\n\n" +
+                                 text="*Уведомление о рассылке* 📨\n\n" +
                                       f"*Отправитель*: @{update.message.from_user.username}\n\n" +
-                                      f"*Сообщение:* \n{text}",
+                                      f"*Сообщение:* \n{text}\n\n" +
+                                      "*Получатели:* \n" + "\n".join(recipients_success),
                                  parse_mode=ParseMode.MARKDOWN)
 
     return ConversationHandler.END

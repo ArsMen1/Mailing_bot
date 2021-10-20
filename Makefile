@@ -1,2 +1,2 @@
 run:
-	docker run -d --rm --env-file .env mailing_bot python run.py
+	docker run -d --env-file .env --restart always mailing_bot python run.py
