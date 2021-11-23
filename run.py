@@ -3,10 +3,9 @@ import sys
 from loguru import logger
 from telegram.error import InvalidToken, NetworkError
 from telegram.ext import Updater
+import mailing_bot.shp_mailing_bot.config as config
 
-from shp_mailing_bot.bot import init_dispatcher
-from shp_mailing_bot.config import TELEGRAM_BOT_TOKEN
-
+from mailing_bot.shp_mailing_bot.bot import init_dispatcher
 
 logger.add('debug.log', encoding="utf8", rotation='10 MB', compression='zip')
 
@@ -15,7 +14,7 @@ def main():
     try:
         logger.debug('Запуск')
         logger.debug('Подключение к telegram API...')
-        updater = Updater(token=TELEGRAM_BOT_TOKEN)
+        updater = Updater(token=config.TELEGRAM_BOT_TOKEN_TEST)
         logger.info('Подключение к telegram API установлено.')
 
         init_dispatcher(updater)
