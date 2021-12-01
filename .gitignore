@@ -1,5 +1,6 @@
 .env
 token.json
 credentials.json
+debug.log
 __pycache__
 /shp_mailing_bot/__pycache__
