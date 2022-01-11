@@ -1,0 +1,4062 @@
+{
+  "object": "list",
+  "results": [
+    {
+      "object": "page",
+      "id": "d68cfb87-bab1-4eba-a477-49d2b2937345",
+      "created_time": "2021-09-10T07:36:00.000Z",
+      "last_edited_time": "2022-01-10T15:36:00.000Z",
+      "cover": null,
+      "icon": null,
+      "parent": {
+        "type": "database_id",
+        "database_id": "0223e0ce-c25b-4509-b0b2-1daf28a01c1c"
+      },
+      "archived": false,
+      "properties": {
+        "NPS 20/21-I -- из БД раньше": {
+          "id": "<RO:",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "54,31%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "54,31%",
+              "href": null
+            }
+          ]
+        },
+        "Статус": {
+          "id": "=mkJ",
+          "type": "rollup",
+          "rollup": {
+            "type": "array",
+            "array": [
+              {
+                "type": "select",
+                "select": {
+                  "id": "dbdec54f-09b2-49e5-a8d6-7c572a6d076e",
+                  "name": "Работает",
+                  "color": "green"
+                }
+              }
+            ],
+            "function": "show_original"
+          }
+        },
+        "Telegram ID": {
+          "id": "@H{m",
+          "type": "number",
+          "number": 175711180
+        },
+        "II 20/21 - Рэдфлаги": {
+          "id": "BVom",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "0",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "0",
+              "href": null
+            }
+          ]
+        },
+        "ЛД": {
+          "id": "EEhF",
+          "type": "relation",
+          "relation": [
+            {
+              "id": "8e761eb5-c1e8-488e-9e1d-a8f6a5b3fd09"
+            }
+          ]
+        },
+        "II 20/21 - Грейд": {
+          "id": "Htc{",
+          "type": "select",
+          "select": {
+            "id": "nFk\\",
+            "name": "2 Грейд (20/21 II)",
+            "color": "yellow"
+          }
+        },
+        "I 20/21 - Выбываемость": {
+          "id": "T<MP",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "3,74%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "3,74%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 19/20-II": {
+          "id": "VXZi",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "80,39%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "80,39%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 18/19-I": {
+          "id": "XFXi",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "49,32%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "49,32%",
+              "href": null
+            }
+          ]
+        },
+        "II 20/21 - Выбываемость": {
+          "id": "bgZD",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "2,08%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "2,08%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 20/21-I из таблицы": {
+          "id": "bvhW",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "54,46%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "54,46%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 20/21-II": {
+          "id": "hpIi",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "76,83%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "76,83%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 18/19-II": {
+          "id": "h~Oc",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "21,43%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "21,43%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 19/20-I": {
+          "id": "rb^p",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "61,38%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "61,38%",
+              "href": null
+            }
+          ]
+        },
+        "История показателей": {
+          "id": "title",
+          "type": "title",
+          "title": [
+            {
+              "type": "text",
+              "text": {
+                "content": "Ушерович Мария",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "Ушерович Мария",
+              "href": null
+            }
+          ]
+        }
+      },
+      "url": "https://www.notion.so/d68cfb87bab14ebaa47749d2b2937345"
+    },
+    {
+      "object": "page",
+      "id": "d77e7336-65e3-4ece-8789-8db4b6b34a36",
+      "created_time": "2021-09-10T07:36:00.000Z",
+      "last_edited_time": "2022-01-10T15:36:00.000Z",
+      "cover": null,
+      "icon": null,
+      "parent": {
+        "type": "database_id",
+        "database_id": "0223e0ce-c25b-4509-b0b2-1daf28a01c1c"
+      },
+      "archived": false,
+      "properties": {
+        "NPS 20/21-I -- из БД раньше": {
+          "id": "<RO:",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "нет данных",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "нет данных",
+              "href": null
+            }
+          ]
+        },
+        "Статус": {
+          "id": "=mkJ",
+          "type": "rollup",
+          "rollup": {
+            "type": "array",
+            "array": [
+              {
+                "type": "select",
+                "select": {
+                  "id": "dbdec54f-09b2-49e5-a8d6-7c572a6d076e",
+                  "name": "Работает",
+                  "color": "green"
+                }
+              }
+            ],
+            "function": "show_original"
+          }
+        },
+        "Telegram ID": {
+          "id": "@H{m",
+          "type": "number",
+          "number": 508139674
+        },
+        "II 20/21 - Рэдфлаги": {
+          "id": "BVom",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "0",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "0",
+              "href": null
+            }
+          ]
+        },
+        "ЛД": {
+          "id": "EEhF",
+          "type": "relation",
+          "relation": [
+            {
+              "id": "72cc9738-fd8c-4b3c-a4de-e3a2034ef7ef"
+            }
+          ]
+        },
+        "II 20/21 - Грейд": {
+          "id": "Htc{",
+          "type": "select",
+          "select": {
+            "id": "nFk\\",
+            "name": "2 Грейд (20/21 II)",
+            "color": "yellow"
+          }
+        },
+        "I 20/21 - Выбываемость": {
+          "id": "T<MP",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "нет данных",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "нет данных",
+              "href": null
+            }
+          ]
+        },
+        "NPS 19/20-II": {
+          "id": "VXZi",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "100,00%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "100,00%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 18/19-I": {
+          "id": "XFXi",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "II 20/21 - Выбываемость": {
+          "id": "bgZD",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "8,14%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "8,14%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 20/21-I из таблицы": {
+          "id": "bvhW",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "65,00%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "65,00%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 20/21-II": {
+          "id": "hpIi",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "82,35%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "82,35%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 18/19-II": {
+          "id": "h~Oc",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "NPS 19/20-I": {
+          "id": "rb^p",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "История показателей": {
+          "id": "title",
+          "type": "title",
+          "title": [
+            {
+              "type": "text",
+              "text": {
+                "content": "Рогожин Алексей",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "Рогожин Алексей",
+              "href": null
+            }
+          ]
+        }
+      },
+      "url": "https://www.notion.so/d77e733665e34ece87898db4b6b34a36"
+    },
+    {
+      "object": "page",
+      "id": "d895ec83-db5b-4aaa-a340-3b7167770ecd",
+      "created_time": "2021-09-10T07:36:00.000Z",
+      "last_edited_time": "2022-01-10T15:36:00.000Z",
+      "cover": null,
+      "icon": null,
+      "parent": {
+        "type": "database_id",
+        "database_id": "0223e0ce-c25b-4509-b0b2-1daf28a01c1c"
+      },
+      "archived": false,
+      "properties": {
+        "NPS 20/21-I -- из БД раньше": {
+          "id": "<RO:",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "нет данных",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "нет данных",
+              "href": null
+            }
+          ]
+        },
+        "Статус": {
+          "id": "=mkJ",
+          "type": "rollup",
+          "rollup": {
+            "type": "array",
+            "array": [
+              {
+                "type": "select",
+                "select": {
+                  "id": "dbdec54f-09b2-49e5-a8d6-7c572a6d076e",
+                  "name": "Работает",
+                  "color": "green"
+                }
+              }
+            ],
+            "function": "show_original"
+          }
+        },
+        "Telegram ID": {
+          "id": "@H{m",
+          "type": "number",
+          "number": 263714017
+        },
+        "II 20/21 - Рэдфлаги": {
+          "id": "BVom",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "0",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "0",
+              "href": null
+            }
+          ]
+        },
+        "ЛД": {
+          "id": "EEhF",
+          "type": "relation",
+          "relation": [
+            {
+              "id": "f14da71c-a8ee-4c52-969c-1a7583dcb7d6"
+            }
+          ]
+        },
+        "II 20/21 - Грейд": {
+          "id": "Htc{",
+          "type": "select",
+          "select": {
+            "id": "daWv",
+            "name": "1 Грейд (20/21 II)",
+            "color": "orange"
+          }
+        },
+        "I 20/21 - Выбываемость": {
+          "id": "T<MP",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "нет данных",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "нет данных",
+              "href": null
+            }
+          ]
+        },
+        "NPS 19/20-II": {
+          "id": "VXZi",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "NPS 18/19-I": {
+          "id": "XFXi",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "II 20/21 - Выбываемость": {
+          "id": "bgZD",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "12,20%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "12,20%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 20/21-I из таблицы": {
+          "id": "bvhW",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "NPS 20/21-II": {
+          "id": "hpIi",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "60,71%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "60,71%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 18/19-II": {
+          "id": "h~Oc",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "NPS 19/20-I": {
+          "id": "rb^p",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "История показателей": {
+          "id": "title",
+          "type": "title",
+          "title": [
+            {
+              "type": "text",
+              "text": {
+                "content": "Добросовестнов Иван",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "Добросовестнов Иван",
+              "href": null
+            }
+          ]
+        }
+      },
+      "url": "https://www.notion.so/d895ec83db5b4aaaa3403b7167770ecd"
+    },
+    {
+      "object": "page",
+      "id": "dcb04a3f-f11d-401e-baa8-07dfcb0b7e8c",
+      "created_time": "2021-09-10T07:36:00.000Z",
+      "last_edited_time": "2022-01-10T12:21:00.000Z",
+      "cover": null,
+      "icon": null,
+      "parent": {
+        "type": "database_id",
+        "database_id": "0223e0ce-c25b-4509-b0b2-1daf28a01c1c"
+      },
+      "archived": false,
+      "properties": {
+        "NPS 20/21-I -- из БД раньше": {
+          "id": "<RO:",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "67,92%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "67,92%",
+              "href": null
+            }
+          ]
+        },
+        "Статус": {
+          "id": "=mkJ",
+          "type": "rollup",
+          "rollup": {
+            "type": "array",
+            "array": [
+              {
+                "type": "select",
+                "select": {
+                  "id": "4954789b-b52a-4994-ab9b-53ff04432ee6",
+                  "name": "Уволен",
+                  "color": "default"
+                }
+              }
+            ],
+            "function": "show_original"
+          }
+        },
+        "II 20/21 - Рэдфлаги": {
+          "id": "BVom",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "0",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "0",
+              "href": null
+            }
+          ]
+        },
+        "ЛД": {
+          "id": "EEhF",
+          "type": "relation",
+          "relation": [
+            {
+              "id": "c3e6bdf4-95c0-4877-b8d8-674905ffae56"
+            }
+          ]
+        },
+        "II 20/21 - Грейд": {
+          "id": "Htc{",
+          "type": "select",
+          "select": {
+            "id": "rUgc",
+            "name": "0 Грейд (20/21 II)",
+            "color": "red"
+          }
+        },
+        "I 20/21 - Выбываемость": {
+          "id": "T<MP",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "11,54%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "11,54%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 19/20-II": {
+          "id": "VXZi",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "NPS 18/19-I": {
+          "id": "XFXi",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "II 20/21 - Выбываемость": {
+          "id": "bgZD",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "17,02%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "17,02%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 20/21-I из таблицы": {
+          "id": "bvhW",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "66,67%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "66,67%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 20/21-II": {
+          "id": "hpIi",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "64,58%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "64,58%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 18/19-II": {
+          "id": "h~Oc",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "NPS 19/20-I": {
+          "id": "rb^p",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "История показателей": {
+          "id": "title",
+          "type": "title",
+          "title": [
+            {
+              "type": "text",
+              "text": {
+                "content": "Горелкин Василий",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "Горелкин Василий",
+              "href": null
+            }
+          ]
+        }
+      },
+      "url": "https://www.notion.so/dcb04a3ff11d401ebaa807dfcb0b7e8c"
+    },
+    {
+      "object": "page",
+      "id": "e1107052-e1b8-4ab6-b5ac-1d3f04c66fcb",
+      "created_time": "2021-09-10T07:36:00.000Z",
+      "last_edited_time": "2022-01-10T15:36:00.000Z",
+      "cover": null,
+      "icon": null,
+      "parent": {
+        "type": "database_id",
+        "database_id": "0223e0ce-c25b-4509-b0b2-1daf28a01c1c"
+      },
+      "archived": false,
+      "properties": {
+        "NPS 20/21-I -- из БД раньше": {
+          "id": "<RO:",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "нет данных",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "нет данных",
+              "href": null
+            }
+          ]
+        },
+        "Статус": {
+          "id": "=mkJ",
+          "type": "rollup",
+          "rollup": {
+            "type": "array",
+            "array": [
+              {
+                "type": "select",
+                "select": {
+                  "id": "dbdec54f-09b2-49e5-a8d6-7c572a6d076e",
+                  "name": "Работает",
+                  "color": "green"
+                }
+              }
+            ],
+            "function": "show_original"
+          }
+        },
+        "Telegram ID": {
+          "id": "@H{m",
+          "type": "number",
+          "number": 1277376552
+        },
+        "II 20/21 - Рэдфлаги": {
+          "id": "BVom",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "0",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "0",
+              "href": null
+            }
+          ]
+        },
+        "ЛД": {
+          "id": "EEhF",
+          "type": "relation",
+          "relation": [
+            {
+              "id": "691aa9a6-7748-491b-ab58-1a943ba9fdda"
+            }
+          ]
+        },
+        "II 20/21 - Грейд": {
+          "id": "Htc{",
+          "type": "select",
+          "select": {
+            "id": "niBX",
+            "name": "3 Грейд (20/21 II)",
+            "color": "green"
+          }
+        },
+        "I 20/21 - Выбываемость": {
+          "id": "T<MP",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "нет данных",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "нет данных",
+              "href": null
+            }
+          ]
+        },
+        "NPS 19/20-II": {
+          "id": "VXZi",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "NPS 18/19-I": {
+          "id": "XFXi",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "II 20/21 - Выбываемость": {
+          "id": "bgZD",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "3,45%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "3,45%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 20/21-I из таблицы": {
+          "id": "bvhW",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "100,00%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "100,00%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 20/21-II": {
+          "id": "hpIi",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "92,59%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "92,59%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 18/19-II": {
+          "id": "h~Oc",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "NPS 19/20-I": {
+          "id": "rb^p",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "История показателей": {
+          "id": "title",
+          "type": "title",
+          "title": [
+            {
+              "type": "text",
+              "text": {
+                "content": "Клиновский Михаил",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "Клиновский Михаил",
+              "href": null
+            }
+          ]
+        }
+      },
+      "url": "https://www.notion.so/e1107052e1b84ab6b5ac1d3f04c66fcb"
+    },
+    {
+      "object": "page",
+      "id": "e15ddd3c-00f2-4f54-9687-b4cb48d17ff6",
+      "created_time": "2021-09-10T07:36:00.000Z",
+      "last_edited_time": "2022-01-10T15:36:00.000Z",
+      "cover": null,
+      "icon": null,
+      "parent": {
+        "type": "database_id",
+        "database_id": "0223e0ce-c25b-4509-b0b2-1daf28a01c1c"
+      },
+      "archived": false,
+      "properties": {
+        "NPS 20/21-I -- из БД раньше": {
+          "id": "<RO:",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "76,71%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "76,71%",
+              "href": null
+            }
+          ]
+        },
+        "Статус": {
+          "id": "=mkJ",
+          "type": "rollup",
+          "rollup": {
+            "type": "array",
+            "array": [
+              {
+                "type": "select",
+                "select": {
+                  "id": "dbdec54f-09b2-49e5-a8d6-7c572a6d076e",
+                  "name": "Работает",
+                  "color": "green"
+                }
+              }
+            ],
+            "function": "show_original"
+          }
+        },
+        "Telegram ID": {
+          "id": "@H{m",
+          "type": "number",
+          "number": 227948371
+        },
+        "II 20/21 - Рэдфлаги": {
+          "id": "BVom",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "1",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "1",
+              "href": null
+            }
+          ]
+        },
+        "ЛД": {
+          "id": "EEhF",
+          "type": "relation",
+          "relation": [
+            {
+              "id": "cb1728c6-6c3b-4a1c-8011-c36b040be1c6"
+            }
+          ]
+        },
+        "II 20/21 - Грейд": {
+          "id": "Htc{",
+          "type": "select",
+          "select": {
+            "id": "nFk\\",
+            "name": "2 Грейд (20/21 II)",
+            "color": "yellow"
+          }
+        },
+        "I 20/21 - Выбываемость": {
+          "id": "T<MP",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "14,23%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "14,23%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 19/20-II": {
+          "id": "VXZi",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "75,00%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "75,00%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 18/19-I": {
+          "id": "XFXi",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "II 20/21 - Выбываемость": {
+          "id": "bgZD",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "4,37%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "4,37%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 20/21-I из таблицы": {
+          "id": "bvhW",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "73,26%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "73,26%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 20/21-II": {
+          "id": "hpIi",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "78,57%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "78,57%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 18/19-II": {
+          "id": "h~Oc",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "NPS 19/20-I": {
+          "id": "rb^p",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "63,83%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "63,83%",
+              "href": null
+            }
+          ]
+        },
+        "История показателей": {
+          "id": "title",
+          "type": "title",
+          "title": [
+            {
+              "type": "text",
+              "text": {
+                "content": "Фоминская Елена",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "Фоминская Елена",
+              "href": null
+            }
+          ]
+        }
+      },
+      "url": "https://www.notion.so/e15ddd3c00f24f549687b4cb48d17ff6"
+    },
+    {
+      "object": "page",
+      "id": "e3f039ee-cc0f-4d17-b68e-cb638c3d10ae",
+      "created_time": "2021-09-10T07:36:00.000Z",
+      "last_edited_time": "2022-01-10T15:36:00.000Z",
+      "cover": null,
+      "icon": null,
+      "parent": {
+        "type": "database_id",
+        "database_id": "0223e0ce-c25b-4509-b0b2-1daf28a01c1c"
+      },
+      "archived": false,
+      "properties": {
+        "NPS 20/21-I -- из БД раньше": {
+          "id": "<RO:",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "нет данных",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "нет данных",
+              "href": null
+            }
+          ]
+        },
+        "Статус": {
+          "id": "=mkJ",
+          "type": "rollup",
+          "rollup": {
+            "type": "array",
+            "array": [
+              {
+                "type": "select",
+                "select": {
+                  "id": "dbdec54f-09b2-49e5-a8d6-7c572a6d076e",
+                  "name": "Работает",
+                  "color": "green"
+                }
+              }
+            ],
+            "function": "show_original"
+          }
+        },
+        "Telegram ID": {
+          "id": "@H{m",
+          "type": "number",
+          "number": 159716048
+        },
+        "II 20/21 - Рэдфлаги": {
+          "id": "BVom",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "0",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "0",
+              "href": null
+            }
+          ]
+        },
+        "ЛД": {
+          "id": "EEhF",
+          "type": "relation",
+          "relation": [
+            {
+              "id": "09a1598a-0e2c-43e4-b59b-8a47b1770fd9"
+            }
+          ]
+        },
+        "II 20/21 - Грейд": {
+          "id": "Htc{",
+          "type": "select",
+          "select": {
+            "id": "daWv",
+            "name": "1 Грейд (20/21 II)",
+            "color": "orange"
+          }
+        },
+        "I 20/21 - Выбываемость": {
+          "id": "T<MP",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "нет данных",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "нет данных",
+              "href": null
+            }
+          ]
+        },
+        "NPS 19/20-II": {
+          "id": "VXZi",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "NPS 18/19-I": {
+          "id": "XFXi",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "II 20/21 - Выбываемость": {
+          "id": "bgZD",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "7,69%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "7,69%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 20/21-I из таблицы": {
+          "id": "bvhW",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "NPS 20/21-II": {
+          "id": "hpIi",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "66,67%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "66,67%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 18/19-II": {
+          "id": "h~Oc",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "NPS 19/20-I": {
+          "id": "rb^p",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "История показателей": {
+          "id": "title",
+          "type": "title",
+          "title": [
+            {
+              "type": "text",
+              "text": {
+                "content": "Любченкова Анна",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "Любченкова Анна",
+              "href": null
+            }
+          ]
+        }
+      },
+      "url": "https://www.notion.so/e3f039eecc0f4d17b68ecb638c3d10ae"
+    },
+    {
+      "object": "page",
+      "id": "e56904b3-a52a-483b-a299-690b1e2529ea",
+      "created_time": "2021-09-10T07:36:00.000Z",
+      "last_edited_time": "2022-01-10T15:36:00.000Z",
+      "cover": null,
+      "icon": null,
+      "parent": {
+        "type": "database_id",
+        "database_id": "0223e0ce-c25b-4509-b0b2-1daf28a01c1c"
+      },
+      "archived": false,
+      "properties": {
+        "NPS 20/21-I -- из БД раньше": {
+          "id": "<RO:",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "67,02%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "67,02%",
+              "href": null
+            }
+          ]
+        },
+        "Статус": {
+          "id": "=mkJ",
+          "type": "rollup",
+          "rollup": {
+            "type": "array",
+            "array": [
+              {
+                "type": "select",
+                "select": {
+                  "id": "dbdec54f-09b2-49e5-a8d6-7c572a6d076e",
+                  "name": "Работает",
+                  "color": "green"
+                }
+              }
+            ],
+            "function": "show_original"
+          }
+        },
+        "Telegram ID": {
+          "id": "@H{m",
+          "type": "number",
+          "number": 230405415
+        },
+        "II 20/21 - Рэдфлаги": {
+          "id": "BVom",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "0",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "0",
+              "href": null
+            }
+          ]
+        },
+        "ЛД": {
+          "id": "EEhF",
+          "type": "relation",
+          "relation": [
+            {
+              "id": "28e80543-f4e4-47d0-99d5-ad9edc605d23"
+            }
+          ]
+        },
+        "II 20/21 - Грейд": {
+          "id": "Htc{",
+          "type": "select",
+          "select": {
+            "id": "daWv",
+            "name": "1 Грейд (20/21 II)",
+            "color": "orange"
+          }
+        },
+        "I 20/21 - Выбываемость": {
+          "id": "T<MP",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "2,86%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "2,86%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 19/20-II": {
+          "id": "VXZi",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "NPS 18/19-I": {
+          "id": "XFXi",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "II 20/21 - Выбываемость": {
+          "id": "bgZD",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "6,06%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "6,06%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 20/21-I из таблицы": {
+          "id": "bvhW",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "73,25%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "73,25%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 20/21-II": {
+          "id": "hpIi",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "61,65%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "61,65%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 18/19-II": {
+          "id": "h~Oc",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "NPS 19/20-I": {
+          "id": "rb^p",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "История показателей": {
+          "id": "title",
+          "type": "title",
+          "title": [
+            {
+              "type": "text",
+              "text": {
+                "content": "Музалевская Алена",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "Музалевская Алена",
+              "href": null
+            }
+          ]
+        }
+      },
+      "url": "https://www.notion.so/e56904b3a52a483ba299690b1e2529ea"
+    },
+    {
+      "object": "page",
+      "id": "ea9dd341-68a7-4528-89af-6c2698f14e0b",
+      "created_time": "2021-09-10T07:36:00.000Z",
+      "last_edited_time": "2022-01-10T15:36:00.000Z",
+      "cover": null,
+      "icon": null,
+      "parent": {
+        "type": "database_id",
+        "database_id": "0223e0ce-c25b-4509-b0b2-1daf28a01c1c"
+      },
+      "archived": false,
+      "properties": {
+        "NPS 20/21-I -- из БД раньше": {
+          "id": "<RO:",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "100,00%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "100,00%",
+              "href": null
+            }
+          ]
+        },
+        "Статус": {
+          "id": "=mkJ",
+          "type": "rollup",
+          "rollup": {
+            "type": "array",
+            "array": [
+              {
+                "type": "select",
+                "select": {
+                  "id": "dbdec54f-09b2-49e5-a8d6-7c572a6d076e",
+                  "name": "Работает",
+                  "color": "green"
+                }
+              }
+            ],
+            "function": "show_original"
+          }
+        },
+        "Telegram ID": {
+          "id": "@H{m",
+          "type": "number",
+          "number": 487064608
+        },
+        "II 20/21 - Рэдфлаги": {
+          "id": "BVom",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "0",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "0",
+              "href": null
+            }
+          ]
+        },
+        "ЛД": {
+          "id": "EEhF",
+          "type": "relation",
+          "relation": [
+            {
+              "id": "0799b91c-2a0b-4be2-a7d9-aa1fa8e41487"
+            }
+          ]
+        },
+        "II 20/21 - Грейд": {
+          "id": "Htc{",
+          "type": "select",
+          "select": {
+            "id": "rUgc",
+            "name": "0 Грейд (20/21 II)",
+            "color": "red"
+          }
+        },
+        "I 20/21 - Выбываемость": {
+          "id": "T<MP",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "0,00%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "0,00%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 19/20-II": {
+          "id": "VXZi",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "NPS 18/19-I": {
+          "id": "XFXi",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "II 20/21 - Выбываемость": {
+          "id": "bgZD",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "0,00%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "0,00%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 20/21-I из таблицы": {
+          "id": "bvhW",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "100,00%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "100,00%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 20/21-II": {
+          "id": "hpIi",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "42,86%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "42,86%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 18/19-II": {
+          "id": "h~Oc",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "NPS 19/20-I": {
+          "id": "rb^p",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "История показателей": {
+          "id": "title",
+          "type": "title",
+          "title": [
+            {
+              "type": "text",
+              "text": {
+                "content": "Иванов Глеб",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "Иванов Глеб",
+              "href": null
+            }
+          ]
+        }
+      },
+      "url": "https://www.notion.so/ea9dd34168a7452889af6c2698f14e0b"
+    },
+    {
+      "object": "page",
+      "id": "eca0acc4-02fc-4224-b137-8439fbd37638",
+      "created_time": "2021-09-10T07:36:00.000Z",
+      "last_edited_time": "2022-01-10T15:36:00.000Z",
+      "cover": null,
+      "icon": null,
+      "parent": {
+        "type": "database_id",
+        "database_id": "0223e0ce-c25b-4509-b0b2-1daf28a01c1c"
+      },
+      "archived": false,
+      "properties": {
+        "NPS 20/21-I -- из БД раньше": {
+          "id": "<RO:",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "нет данных",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "нет данных",
+              "href": null
+            }
+          ]
+        },
+        "Статус": {
+          "id": "=mkJ",
+          "type": "rollup",
+          "rollup": {
+            "type": "array",
+            "array": [
+              {
+                "type": "select",
+                "select": {
+                  "id": "dbdec54f-09b2-49e5-a8d6-7c572a6d076e",
+                  "name": "Работает",
+                  "color": "green"
+                }
+              }
+            ],
+            "function": "show_original"
+          }
+        },
+        "Telegram ID": {
+          "id": "@H{m",
+          "type": "number",
+          "number": 526713898
+        },
+        "II 20/21 - Рэдфлаги": {
+          "id": "BVom",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "0",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "0",
+              "href": null
+            }
+          ]
+        },
+        "ЛД": {
+          "id": "EEhF",
+          "type": "relation",
+          "relation": [
+            {
+              "id": "b65607f0-0b25-4ffe-ae51-b576d158c0f8"
+            }
+          ]
+        },
+        "II 20/21 - Грейд": {
+          "id": "Htc{",
+          "type": "select",
+          "select": {
+            "id": "daWv",
+            "name": "1 Грейд (20/21 II)",
+            "color": "orange"
+          }
+        },
+        "I 20/21 - Выбываемость": {
+          "id": "T<MP",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "нет данных",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "нет данных",
+              "href": null
+            }
+          ]
+        },
+        "NPS 19/20-II": {
+          "id": "VXZi",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "NPS 18/19-I": {
+          "id": "XFXi",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "II 20/21 - Выбываемость": {
+          "id": "bgZD",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "3,29%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "3,29%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 20/21-I из таблицы": {
+          "id": "bvhW",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "65,73%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "65,73%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 20/21-II": {
+          "id": "hpIi",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "70,83%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "70,83%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 18/19-II": {
+          "id": "h~Oc",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "NPS 19/20-I": {
+          "id": "rb^p",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "История показателей": {
+          "id": "title",
+          "type": "title",
+          "title": [
+            {
+              "type": "text",
+              "text": {
+                "content": "Береговой Сергей",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "Береговой Сергей",
+              "href": null
+            }
+          ]
+        }
+      },
+      "url": "https://www.notion.so/eca0acc402fc4224b1378439fbd37638"
+    },
+    {
+      "object": "page",
+      "id": "f1394a0e-dadd-4c5f-803f-ec7e76e0b23c",
+      "created_time": "2021-09-10T07:36:00.000Z",
+      "last_edited_time": "2022-01-10T15:36:00.000Z",
+      "cover": null,
+      "icon": null,
+      "parent": {
+        "type": "database_id",
+        "database_id": "0223e0ce-c25b-4509-b0b2-1daf28a01c1c"
+      },
+      "archived": false,
+      "properties": {
+        "NPS 20/21-I -- из БД раньше": {
+          "id": "<RO:",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "нет данных",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "нет данных",
+              "href": null
+            }
+          ]
+        },
+        "Статус": {
+          "id": "=mkJ",
+          "type": "rollup",
+          "rollup": {
+            "type": "array",
+            "array": [
+              {
+                "type": "select",
+                "select": {
+                  "id": "dbdec54f-09b2-49e5-a8d6-7c572a6d076e",
+                  "name": "Работает",
+                  "color": "green"
+                }
+              }
+            ],
+            "function": "show_original"
+          }
+        },
+        "Telegram ID": {
+          "id": "@H{m",
+          "type": "number",
+          "number": 216200450
+        },
+        "II 20/21 - Рэдфлаги": {
+          "id": "BVom",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "0",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "0",
+              "href": null
+            }
+          ]
+        },
+        "ЛД": {
+          "id": "EEhF",
+          "type": "relation",
+          "relation": [
+            {
+              "id": "6d00e009-937b-44e5-9948-28264a0f796c"
+            }
+          ]
+        },
+        "II 20/21 - Грейд": {
+          "id": "Htc{",
+          "type": "select",
+          "select": {
+            "id": "nFk\\",
+            "name": "2 Грейд (20/21 II)",
+            "color": "yellow"
+          }
+        },
+        "I 20/21 - Выбываемость": {
+          "id": "T<MP",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "нет данных",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "нет данных",
+              "href": null
+            }
+          ]
+        },
+        "NPS 19/20-II": {
+          "id": "VXZi",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "NPS 18/19-I": {
+          "id": "XFXi",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "II 20/21 - Выбываемость": {
+          "id": "bgZD",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "2,86%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "2,86%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 20/21-I из таблицы": {
+          "id": "bvhW",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "62,07%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "62,07%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 20/21-II": {
+          "id": "hpIi",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "80,77%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "80,77%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 18/19-II": {
+          "id": "h~Oc",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "NPS 19/20-I": {
+          "id": "rb^p",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "История показателей": {
+          "id": "title",
+          "type": "title",
+          "title": [
+            {
+              "type": "text",
+              "text": {
+                "content": "Григорьев Дмитрий",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "Григорьев Дмитрий",
+              "href": null
+            }
+          ]
+        }
+      },
+      "url": "https://www.notion.so/f1394a0edadd4c5f803fec7e76e0b23c"
+    },
+    {
+      "object": "page",
+      "id": "f1a2ccb7-5217-43d5-9d1c-da7d6bbf783d",
+      "created_time": "2021-09-10T07:36:00.000Z",
+      "last_edited_time": "2022-01-10T15:36:00.000Z",
+      "cover": null,
+      "icon": null,
+      "parent": {
+        "type": "database_id",
+        "database_id": "0223e0ce-c25b-4509-b0b2-1daf28a01c1c"
+      },
+      "archived": false,
+      "properties": {
+        "NPS 20/21-I -- из БД раньше": {
+          "id": "<RO:",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "56,26%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "56,26%",
+              "href": null
+            }
+          ]
+        },
+        "Статус": {
+          "id": "=mkJ",
+          "type": "rollup",
+          "rollup": {
+            "type": "array",
+            "array": [
+              {
+                "type": "select",
+                "select": {
+                  "id": "dbdec54f-09b2-49e5-a8d6-7c572a6d076e",
+                  "name": "Работает",
+                  "color": "green"
+                }
+              }
+            ],
+            "function": "show_original"
+          }
+        },
+        "Telegram ID": {
+          "id": "@H{m",
+          "type": "number",
+          "number": 384213776
+        },
+        "II 20/21 - Рэдфлаги": {
+          "id": "BVom",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "0",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "0",
+              "href": null
+            }
+          ]
+        },
+        "ЛД": {
+          "id": "EEhF",
+          "type": "relation",
+          "relation": [
+            {
+              "id": "eb5c8d9c-cad4-42c3-ad64-f36ea241a57c"
+            }
+          ]
+        },
+        "II 20/21 - Грейд": {
+          "id": "Htc{",
+          "type": "select",
+          "select": {
+            "id": "nFk\\",
+            "name": "2 Грейд (20/21 II)",
+            "color": "yellow"
+          }
+        },
+        "I 20/21 - Выбываемость": {
+          "id": "T<MP",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "3,94%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "3,94%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 19/20-II": {
+          "id": "VXZi",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "75,76%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "75,76%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 18/19-I": {
+          "id": "XFXi",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "60,63%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "60,63%",
+              "href": null
+            }
+          ]
+        },
+        "II 20/21 - Выбываемость": {
+          "id": "bgZD",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "0,00%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "0,00%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 20/21-I из таблицы": {
+          "id": "bvhW",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "50,75%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "50,75%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 20/21-II": {
+          "id": "hpIi",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "80,95%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "80,95%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 18/19-II": {
+          "id": "h~Oc",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "54,17%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "54,17%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 19/20-I": {
+          "id": "rb^p",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "77,36%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "77,36%",
+              "href": null
+            }
+          ]
+        },
+        "История показателей": {
+          "id": "title",
+          "type": "title",
+          "title": [
+            {
+              "type": "text",
+              "text": {
+                "content": "Малащук Олеся",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "Малащук Олеся",
+              "href": null
+            }
+          ]
+        }
+      },
+      "url": "https://www.notion.so/f1a2ccb7521743d59d1cda7d6bbf783d"
+    },
+    {
+      "object": "page",
+      "id": "f79992c0-7241-4978-925c-e835618b37ca",
+      "created_time": "2021-09-10T07:36:00.000Z",
+      "last_edited_time": "2022-01-10T15:36:00.000Z",
+      "cover": null,
+      "icon": null,
+      "parent": {
+        "type": "database_id",
+        "database_id": "0223e0ce-c25b-4509-b0b2-1daf28a01c1c"
+      },
+      "archived": false,
+      "properties": {
+        "NPS 20/21-I -- из БД раньше": {
+          "id": "<RO:",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "нет данных",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "нет данных",
+              "href": null
+            }
+          ]
+        },
+        "Статус": {
+          "id": "=mkJ",
+          "type": "rollup",
+          "rollup": {
+            "type": "array",
+            "array": [
+              {
+                "type": "select",
+                "select": {
+                  "id": "dbdec54f-09b2-49e5-a8d6-7c572a6d076e",
+                  "name": "Работает",
+                  "color": "green"
+                }
+              }
+            ],
+            "function": "show_original"
+          }
+        },
+        "Telegram ID": {
+          "id": "@H{m",
+          "type": "number",
+          "number": 298318519
+        },
+        "II 20/21 - Рэдфлаги": {
+          "id": "BVom",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "0",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "0",
+              "href": null
+            }
+          ]
+        },
+        "ЛД": {
+          "id": "EEhF",
+          "type": "relation",
+          "relation": [
+            {
+              "id": "98cecdf1-208f-4e39-8933-2f3acfdf0b0f"
+            }
+          ]
+        },
+        "II 20/21 - Грейд": {
+          "id": "Htc{",
+          "type": "select",
+          "select": {
+            "id": "daWv",
+            "name": "1 Грейд (20/21 II)",
+            "color": "orange"
+          }
+        },
+        "I 20/21 - Выбываемость": {
+          "id": "T<MP",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "нет данных",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "нет данных",
+              "href": null
+            }
+          ]
+        },
+        "NPS 19/20-II": {
+          "id": "VXZi",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "NPS 18/19-I": {
+          "id": "XFXi",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "II 20/21 - Выбываемость": {
+          "id": "bgZD",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "11,00%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "11,00%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 20/21-I из таблицы": {
+          "id": "bvhW",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "NPS 20/21-II": {
+          "id": "hpIi",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "68,57%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "68,57%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 18/19-II": {
+          "id": "h~Oc",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "NPS 19/20-I": {
+          "id": "rb^p",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "История показателей": {
+          "id": "title",
+          "type": "title",
+          "title": [
+            {
+              "type": "text",
+              "text": {
+                "content": "Киселев Алексей",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "Киселев Алексей",
+              "href": null
+            }
+          ]
+        }
+      },
+      "url": "https://www.notion.so/f79992c072414978925ce835618b37ca"
+    },
+    {
+      "object": "page",
+      "id": "38b0a96b-d508-4c25-b651-06715d0aff0f",
+      "created_time": "2021-09-10T07:24:00.000Z",
+      "last_edited_time": "2022-01-10T15:36:00.000Z",
+      "cover": null,
+      "icon": null,
+      "parent": {
+        "type": "database_id",
+        "database_id": "0223e0ce-c25b-4509-b0b2-1daf28a01c1c"
+      },
+      "archived": false,
+      "properties": {
+        "NPS 20/21-I -- из БД раньше": {
+          "id": "<RO:",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "75,90%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "75,90%",
+              "href": null
+            }
+          ]
+        },
+        "Статус": {
+          "id": "=mkJ",
+          "type": "rollup",
+          "rollup": {
+            "type": "array",
+            "array": [
+              {
+                "type": "select",
+                "select": {
+                  "id": "dbdec54f-09b2-49e5-a8d6-7c572a6d076e",
+                  "name": "Работает",
+                  "color": "green"
+                }
+              }
+            ],
+            "function": "show_original"
+          }
+        },
+        "Telegram ID": {
+          "id": "@H{m",
+          "type": "number",
+          "number": 280921915
+        },
+        "II 20/21 - Рэдфлаги": {
+          "id": "BVom",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "0",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "0",
+              "href": null
+            }
+          ]
+        },
+        "ЛД": {
+          "id": "EEhF",
+          "type": "relation",
+          "relation": [
+            {
+              "id": "a0074c26-98f5-4d93-9d97-c1dd1cac597e"
+            }
+          ]
+        },
+        "II 20/21 - Грейд": {
+          "id": "Htc{",
+          "type": "select",
+          "select": {
+            "id": "niBX",
+            "name": "3 Грейд (20/21 II)",
+            "color": "green"
+          }
+        },
+        "I 20/21 - Выбываемость": {
+          "id": "T<MP",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "7,22%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "7,22%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 19/20-II": {
+          "id": "VXZi",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "80,00%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "80,00%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 18/19-I": {
+          "id": "XFXi",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "II 20/21 - Выбываемость": {
+          "id": "bgZD",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "4,61%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "4,61%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 20/21-I из таблицы": {
+          "id": "bvhW",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "79,76%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "79,76%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 20/21-II": {
+          "id": "hpIi",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "86,15%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "86,15%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 18/19-II": {
+          "id": "h~Oc",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "NPS 19/20-I": {
+          "id": "rb^p",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "История показателей": {
+          "id": "title",
+          "type": "title",
+          "title": [
+            {
+              "type": "text",
+              "text": {
+                "content": "Алексеев Николай",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "Алексеев Николай",
+              "href": null
+            }
+          ]
+        }
+      },
+      "url": "https://www.notion.so/38b0a96bd5084c25b65106715d0aff0f"
+    },
+    {
+      "object": "page",
+      "id": "42183399-fe79-401b-ab3b-dc7b268ec731",
+      "created_time": "2021-09-10T07:24:00.000Z",
+      "last_edited_time": "2022-01-10T15:36:00.000Z",
+      "cover": null,
+      "icon": null,
+      "parent": {
+        "type": "database_id",
+        "database_id": "0223e0ce-c25b-4509-b0b2-1daf28a01c1c"
+      },
+      "archived": false,
+      "properties": {
+        "NPS 20/21-I -- из БД раньше": {
+          "id": "<RO:",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "77,37%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "77,37%",
+              "href": null
+            }
+          ]
+        },
+        "Статус": {
+          "id": "=mkJ",
+          "type": "rollup",
+          "rollup": {
+            "type": "array",
+            "array": [
+              {
+                "type": "select",
+                "select": {
+                  "id": "dbdec54f-09b2-49e5-a8d6-7c572a6d076e",
+                  "name": "Работает",
+                  "color": "green"
+                }
+              }
+            ],
+            "function": "show_original"
+          }
+        },
+        "Telegram ID": {
+          "id": "@H{m",
+          "type": "number",
+          "number": 163693805
+        },
+        "II 20/21 - Рэдфлаги": {
+          "id": "BVom",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "1",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "1",
+              "href": null
+            }
+          ]
+        },
+        "ЛД": {
+          "id": "EEhF",
+          "type": "relation",
+          "relation": [
+            {
+              "id": "ba9590d9-7b17-41e8-871a-5552d40e8dba"
+            }
+          ]
+        },
+        "II 20/21 - Грейд": {
+          "id": "Htc{",
+          "type": "select",
+          "select": {
+            "id": "niBX",
+            "name": "3 Грейд (20/21 II)",
+            "color": "green"
+          }
+        },
+        "I 20/21 - Выбываемость": {
+          "id": "T<MP",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "3,70%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "3,70%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 19/20-II": {
+          "id": "VXZi",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "76,67%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "76,67%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 18/19-I": {
+          "id": "XFXi",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "67,08%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "67,08%",
+              "href": null
+            }
+          ]
+        },
+        "II 20/21 - Выбываемость": {
+          "id": "bgZD",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "2,35%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "2,35%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 20/21-I из таблицы": {
+          "id": "bvhW",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "76,34%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "76,34%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 20/21-II": {
+          "id": "hpIi",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "87,67%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "87,67%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 18/19-II": {
+          "id": "h~Oc",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "73,96%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "73,96%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 19/20-I": {
+          "id": "rb^p",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "80,81%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "80,81%",
+              "href": null
+            }
+          ]
+        },
+        "История показателей": {
+          "id": "title",
+          "type": "title",
+          "title": [
+            {
+              "type": "text",
+              "text": {
+                "content": "Абкадиров Руслан",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "Абкадиров Руслан",
+              "href": null
+            }
+          ]
+        }
+      },
+      "url": "https://www.notion.so/42183399fe79401bab3bdc7b268ec731"
+    },
+    {
+      "object": "page",
+      "id": "deaca059-0789-42a1-8256-0cbec6a53971",
+      "created_time": "2021-09-10T07:24:00.000Z",
+      "last_edited_time": "2022-01-10T15:36:00.000Z",
+      "cover": null,
+      "icon": null,
+      "parent": {
+        "type": "database_id",
+        "database_id": "0223e0ce-c25b-4509-b0b2-1daf28a01c1c"
+      },
+      "archived": false,
+      "properties": {
+        "NPS 20/21-I -- из БД раньше": {
+          "id": "<RO:",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "88,69%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "88,69%",
+              "href": null
+            }
+          ]
+        },
+        "Статус": {
+          "id": "=mkJ",
+          "type": "rollup",
+          "rollup": {
+            "type": "array",
+            "array": [
+              {
+                "type": "select",
+                "select": {
+                  "id": "dbdec54f-09b2-49e5-a8d6-7c572a6d076e",
+                  "name": "Работает",
+                  "color": "green"
+                }
+              }
+            ],
+            "function": "show_original"
+          }
+        },
+        "Telegram ID": {
+          "id": "@H{m",
+          "type": "number",
+          "number": 280756369
+        },
+        "II 20/21 - Рэдфлаги": {
+          "id": "BVom",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "1",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "1",
+              "href": null
+            }
+          ]
+        },
+        "ЛД": {
+          "id": "EEhF",
+          "type": "relation",
+          "relation": [
+            {
+              "id": "4e172ea0-bb92-4061-af82-fea493a394c1"
+            }
+          ]
+        },
+        "II 20/21 - Грейд": {
+          "id": "Htc{",
+          "type": "select",
+          "select": {
+            "id": "rUgc",
+            "name": "0 Грейд (20/21 II)",
+            "color": "red"
+          }
+        },
+        "I 20/21 - Выбываемость": {
+          "id": "T<MP",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "13,33%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "13,33%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 19/20-II": {
+          "id": "VXZi",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "63,64%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "63,64%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 18/19-I": {
+          "id": "XFXi",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "II 20/21 - Выбываемость": {
+          "id": "bgZD",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "15,00%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "15,00%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 20/21-I из таблицы": {
+          "id": "bvhW",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "88,46%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "88,46%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 20/21-II": {
+          "id": "hpIi",
+          "type": "rich_text",
+          "rich_text": [
+            {
+              "type": "text",
+              "text": {
+                "content": "72,73%",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "72,73%",
+              "href": null
+            }
+          ]
+        },
+        "NPS 18/19-II": {
+          "id": "h~Oc",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "NPS 19/20-I": {
+          "id": "rb^p",
+          "type": "rich_text",
+          "rich_text": []
+        },
+        "История показателей": {
+          "id": "title",
+          "type": "title",
+          "title": [
+            {
+              "type": "text",
+              "text": {
+                "content": "Алейников Александр",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "Алейников Александр",
+              "href": null
+            }
+          ]
+        }
+      },
+      "url": "https://www.notion.so/deaca059078942a182560cbec6a53971"
+    }
+  ],
+  "next_cursor": null,
+  "has_more": false
+}
