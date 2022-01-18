@@ -1,20 +1,27 @@
-from telegram import Update, ParseMode, KeyboardButton, ReplyKeyboardMarkup, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import Update, ParseMode, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import CallbackContext
+from loguru import logger
 
 from mailing_bot.shp_mailing_bot.config import GET_GRADE_INFO_BUTTON, GET_GROUP_DETAILING_NPS_BUTTON, \
     GET_SEMESTERS_DETAILING_BUTTON
 import mailing_bot.shp_mailing_bot.message_creator as messenger
-from mailing_bot.shp_mailing_bot.indicators_processing import get_prep_indicators
-from mailing_bot.shp_mailing_bot.google_sheets_info import get_indicators_from_sheet
+from mailing_bot.shp_mailing_bot.prep import Prep
+
+logger.add('debug.log', encoding="utf8", rotation='10 MB', compression='zip')
 
 
 def get_indicators_action(update: Update, context: CallbackContext) -> None:
     message = update.message.reply_text('Секундочку, чичас поищу')
-
     prep_id = update.effective_user.id
-    values = get_indicators_from_sheet()
+    if prep_id not in Prep.preps_cashed_list:
+        Prep.preps_cashed_list[prep_id] = Prep(prep_id)
+    prep = Prep.preps_cashed_list[prep_id]
+    nps, retirement, redflags, average_nps, average_retirement = (None,) * 5
 
-    nps, retirement, average_nps, average_retirement, redflags = get_prep_indicators(values, prep_id)
+    nps, retirement, redflags = prep.get_curr_nps(), prep.get_curr_retirement(), prep.get_curr_redflags()
+
+    if any((nps, retirement, redflags)):
+        average_nps, average_retirement = prep.average_curr_nps, prep.average_curr_retirement
 
     final_indicators_message, indicators_flag = messenger.indicators_message(nps,
                                                                              retirement,
@@ -22,6 +29,7 @@ def get_indicators_action(update: Update, context: CallbackContext) -> None:
                                                                              average_retirement,
                                                                              redflags)
 
+    # keyboard generating
     if not indicators_flag:  # if no indicators information
 
         keyboard = [

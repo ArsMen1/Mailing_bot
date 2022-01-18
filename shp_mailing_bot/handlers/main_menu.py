@@ -1,4 +1,4 @@
-from telegram import Update, ParseMode, KeyboardButton, ReplyKeyboardMarkup, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import CallbackContext
 
 from mailing_bot.shp_mailing_bot.config import GET_GROUP_DETAILING_NPS_BUTTON, GET_SEMESTERS_DETAILING_BUTTON, \

@@ -12,14 +12,14 @@ logger.add('debug.log', encoding="utf8", rotation='10 MB', compression='zip')
 
 def main():
     try:
-        logger.debug('Запуск')
-        logger.debug('Подключение к telegram API...')
+        logger.info('Запуск...')
         updater = Updater(token=config.TELEGRAM_BOT_TOKEN_TEST)
         logger.info('Подключение к telegram API установлено.')
 
         init_dispatcher(updater)
 
-        logger.info('Бот запущен')
+        logger.info('Бот запущен.')
+
         updater.start_polling()
         updater.idle()
     except InvalidToken:
