@@ -7,7 +7,10 @@ from telegram.ext import CommandHandler, MessageHandler, Filters, CallbackContex
 from mailing_bot.shp_mailing_bot.config import RESPONSIBLE_FOR_THE_BOT, \
     GET_MAIN_MENU_INDICATORS, \
     GET_GROUP_DETAILING_NPS_BUTTON, \
-    GET_GRADE_INFO_BUTTON
+    GET_GRADE_INFO_BUTTON, \
+    GET_SEMESTERS_DETAILING_BUTTON, \
+    GET_PREV_SEM_DETAILING, \
+    GET_NEXT_SEM_DETAILING
 from mailing_bot.shp_mailing_bot.handlers import get_prep_indicators, grade_info, group_detailing_nps, \
     knowledge_base_link, semester_detailing, main_menu
 
@@ -70,8 +73,14 @@ def init_dispatcher(updater: Update):
     # кнопка получения информации о формировании грейда
 
     dispatcher.add_handler(CallbackQueryHandler(semester_detailing.get_nps_stat,
-                                                pattern=semester_detailing.I_21_22_SEM))
-    # кнопка
+                                                pattern=GET_SEMESTERS_DETAILING_BUTTON))
+    # кнопка получения статистики по NPS (кидает на последний сем)
+
+    dispatcher.add_handler(CallbackQueryHandler(semester_detailing.get_nps_stat_prev,
+                                                pattern=GET_PREV_SEM_DETAILING))
+
+    dispatcher.add_handler(CallbackQueryHandler(semester_detailing.get_nps_stat_next,
+                                                pattern=GET_NEXT_SEM_DETAILING))
 
     dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, undefined_message_action))
     # обработка остальных сообщений

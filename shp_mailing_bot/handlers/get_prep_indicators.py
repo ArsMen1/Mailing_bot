@@ -18,7 +18,7 @@ def get_indicators_action(update: Update, context: CallbackContext) -> None:
     prep = Prep.preps_cashed_list[prep_id]
     nps, retirement, redflags, average_nps, average_retirement = (None,) * 5
 
-    nps, retirement, redflags = prep.get_curr_nps(), prep.get_curr_retirement(), prep.get_curr_redflags()
+    nps, retirement, redflags = prep.get_curr_indicators()
 
     if any((nps, retirement, redflags)):
         average_nps, average_retirement = prep.average_curr_nps, prep.average_curr_retirement
