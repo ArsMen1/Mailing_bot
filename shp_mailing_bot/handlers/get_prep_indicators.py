@@ -11,10 +11,16 @@ logger.add('debug.log', encoding="utf8", rotation='10 MB', compression='zip')
 
 
 def get_indicators_action(update: Update, context: CallbackContext) -> None:
-    message = update.message.reply_text('Секундочку, чичас поищу')
     prep_id = update.effective_user.id
     if prep_id not in Prep.preps_cashed_list:
-        Prep.preps_cashed_list[prep_id] = Prep(prep_id)
+        prep = Prep(prep_id)
+        if not prep.does_exists:
+            update.message.reply_text(messenger.are_you_really_prep)
+            return
+        Prep.preps_cashed_list[prep_id] = prep
+
+    message = update.message.reply_text('Секундочку, чичас поищу')
+
     prep = Prep.preps_cashed_list[prep_id]
     nps, retirement, redflags, average_nps, average_retirement = (None,) * 5
 

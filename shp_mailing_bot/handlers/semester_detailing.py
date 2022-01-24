@@ -1,8 +1,9 @@
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ParseMode
 from telegram.ext import CallbackContext
 
 from mailing_bot.shp_mailing_bot.config import GET_MAIN_MENU_INDICATORS, GET_PREV_SEM_DETAILING, GET_NEXT_SEM_DETAILING
 from mailing_bot.shp_mailing_bot.prep import Prep, semesters_names
+from mailing_bot.shp_mailing_bot.message_creator import semester_detailing_indicators_message
 
 from loguru import logger
 
@@ -36,31 +37,22 @@ def get_right_keyboard(prep):
         return ok_keyboard
 
 
-def get_prep(update):
-    prep_id = update.effective_user.id
-    if prep_id not in Prep.preps_cashed_list:
-        Prep.preps_cashed_list[prep_id] = Prep(prep_id)
-    prep = Prep.preps_cashed_list[prep_id]
-    prep.get_indicators_semester_statistic()
-    return prep
-
-
 def semesters_navigator(func):
     def wrapper(update: Update, context: CallbackContext):
         query = update.callback_query
         query.answer()
 
-        prep = get_prep(update)
+        prep = Prep.find_prep(update)
 
         func(update, context, prep)
 
         indicators = prep.semesters_indicators[semesters_names[prep.sem_pointer]]
         actual_keyboard = get_right_keyboard(prep)
-        query.edit_message_text(f"Семестр: {semesters_names[prep.sem_pointer]}\n"
-                                f"NPS: {indicators.nps}\n"
-                                f"Выбываемость: {indicators.retirement}\n"
-                                f"Редфлаги: {indicators.redflags}",
-                                reply_markup=actual_keyboard)
+        query.edit_message_text(semester_detailing_indicators_message(semesters_names[prep.sem_pointer],
+                                                                      indicators.nps,
+                                                                      indicators.retirement,
+                                                                      indicators.redflags),
+                                reply_markup=actual_keyboard, parse_mode=ParseMode.MARKDOWN)
 
     return wrapper
 

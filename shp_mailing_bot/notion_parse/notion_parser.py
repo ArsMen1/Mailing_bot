@@ -33,6 +33,8 @@ class NotionParser:
             logger.debug(f"{self.response}")
             self.response = None
 
+        if not self.response["results"]:
+            return
         if "properties" in self.response["results"][0]:
             self.prep_info = self.response["results"][0]["properties"]
         # with open('./db.json', 'w', encoding='utf8') as f:

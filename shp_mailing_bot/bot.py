@@ -42,7 +42,9 @@ def help_action(update: Update, context: CallbackContext):
 
 
 def undefined_message_action(update: Update, context: CallbackContext):
-    update.message.reply_text('Не уверен, что понятийно 🥺\nЯ ещё не очень хорошо говорить русски, я молодой бот')
+    update.message.reply_text('Не уверен, что понятийно 🥺\n'
+                              'Я ещё не очень хорошо говорить русски, я молодой бот. \n'
+                              'Используйтэ команда с "/"')
 
 
 def init_dispatcher(updater: Update):
