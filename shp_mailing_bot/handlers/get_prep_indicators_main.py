@@ -67,9 +67,8 @@ def get_indicators_action(update: Update, context: CallbackContext) -> None:
     final_message = f"*Семестр {sem}\n\n\n*"
 
     final_message = final_message + get_indicators(prep) + \
+                    messenger.grade_info_message(prep.semesters_indicators[sem].grade) + \
                     messenger.current_group_detailing_nps_message(prep.semesters_indicators[sem].group_detailing)
 
     reply_markup = get_right_keyboard(prep)
     message.edit_text(final_message, parse_mode=ParseMode.MARKDOWN, reply_markup=reply_markup)
-
-

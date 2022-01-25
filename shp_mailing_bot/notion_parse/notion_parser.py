@@ -1,7 +1,7 @@
 from requests import request
 import mailing_bot.shp_mailing_bot.config as config
+from mailing_bot.logger_bot import logger
 from json import dump
-from loguru import logger
 
 logger.add('debug.log', encoding="utf8", rotation='10 MB', compression='zip')
 

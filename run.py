@@ -1,13 +1,11 @@
 import sys
 
-from loguru import logger
 from telegram.error import InvalidToken, NetworkError
 from telegram.ext import Updater
 import mailing_bot.shp_mailing_bot.config as config
 
 from mailing_bot.shp_mailing_bot.bot import init_dispatcher
-
-logger.add('debug.log', encoding="utf8", rotation='10 MB', compression='zip')
+from mailing_bot.logger_bot import logger
 
 
 def main():

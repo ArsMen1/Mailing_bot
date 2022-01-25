@@ -22,12 +22,8 @@ ACTUAL_SEM = semesters_names[len(semesters_names) - 1]
 RESPONSIBLE_FOR_THE_BOT = "@ktrntrsv"
 
 GET_KD_LINK_BUTTON = 'База знаний'
-GET_INDICATORS_BUTTON = 'Мои показатели'
-GET_MAIN_MENU_INDICATORS = 'Главное меню'
-GET_GROUP_DETAILING_NPS_BUTTON = 'NPS по группам'
-GET_GRADE_INFO_BUTTON = 'Грейд'
-GET_SEMESTERS_DETAILING_BUTTON = 'NPS по семестрам'
-GET_NEXT_SEM_DETAILING = "Next semester"
-GET_PREV_SEM_DETAILING = "Previous semester"
+GET_CURR_SEM = 'Показатели'
+GET_NEXT_SEM = "Следующий семестр"
+GET_PREV_SEM = "Прошлый семестр"
 
 ttl = 10 * 60  # ttl - seconds

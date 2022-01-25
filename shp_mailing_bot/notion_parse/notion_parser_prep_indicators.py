@@ -1,10 +1,8 @@
-from loguru import logger
 import cachetools.func
 
 from mailing_bot.shp_mailing_bot.notion_parse.notion_parser import NotionParser
 from mailing_bot.shp_mailing_bot.config import ACTUAL_SEM, ttl
-
-logger.add('debug.log', encoding="utf8", rotation='10 MB', compression='zip')
+from mailing_bot.logger_bot import logger
 
 
 class NotionParserPrep(NotionParser):
@@ -21,4 +19,3 @@ class NotionParserPrep(NotionParser):
         if not state or state == "Уволен":
             return None
         return self._find_field_meaning(field, self.prep_info)
-
