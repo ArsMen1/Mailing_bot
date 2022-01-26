@@ -1,5 +1,4 @@
-
-from telegram import Update
+from telegram import Update, ParseMode
 from telegram.ext import CommandHandler, MessageHandler, Filters, CallbackContext, \
     CallbackQueryHandler
 
@@ -16,11 +15,16 @@ def start_action(update: Update, context: CallbackContext) -> None:
     user = update.effective_user
     logger.info(f'Отправлено сообщение старта пользователю {user.name}')
 
-    update.message.reply_text(f'Здравствуйте, {user.first_name}')
-
-    keyboard_markup = None
-    update.message.reply_text('Выберите действие в меню или введите "/"',
-                              reply_markup=keyboard_markup)
+    update.message.reply_text(f'Здравствуйте, {user.first_name}! '
+                              f'Рад, что вы заглянули ко мне в гости 🙂\n\n'
+                              f'*Я бот для преподавателей Школы Программистов.*\n'
+                              f'И я буду *присылать вам важную информацию*, '
+                              f'которую мне передают мои секретные агенты. Только тсс 🤫\n\n'
+                              f'Также в моей книжечке записаны *ваши показатели* (NPS, выбываемость, грейд), '
+                              f'которыми я могу поделиться с вами.\n'
+                              f'А ещё, если вы потеряете мою подругу *Базу Знаний*, я помогу ее найти.\n'
+                              f'\nДавайте осмотримся, введите "/" или воспользуйтесь меню команд.',
+                              parse_mode=ParseMode.MARKDOWN)
 
 
 def help_action(update: Update, context: CallbackContext):
