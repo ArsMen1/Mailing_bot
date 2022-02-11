@@ -1,6 +1,6 @@
 from random import choice
 from re import search, match
-from mailing_bot.shp_mailing_bot.config import RESPONSIBLE_FOR_THE_BOT
+from mailing_bot.shp_mailing_bot.config import RESPONSIBLE_FOR_THE_BOT, GRADE_INFO_STATE_LINK
 from tabulate import tabulate
 from mailing_bot.logger_bot import logger
 
@@ -13,7 +13,7 @@ MEDIUM_BAR_NPS = 65  # средний результат -- от 65 до 80
 TOP_BAR_RETIREMENT = 4
 MEDIUM_BAR_RETIREMENT = 8
 
-are_you_really_prep = 'Не могу вас найти в моей тетрадочке, вы точно преподаватель? 🥸\n' \
+are_you_really_prep_message = 'Не могу вас найти в моей тетрадочке, вы точно преподаватель? 🥸\n' \
                       f'Если да, то скажите про это моей мамочке {RESPONSIBLE_FOR_THE_BOT}, ' \
                       f'она вас запишет карандашом.'
 
@@ -54,7 +54,7 @@ def kd_link_message() -> str:
     return choice(db_phrases)
 
 
-def evaluation_indicator(nps: str = None, retirement: str = None) -> str:  # get comment for nps or retirement
+def evaluation_indicator_message(nps: str = None, retirement: str = None) -> str:  # get comment for nps or retirement
     # phrases
     excellent_indicators_comments = (
         'Кайф :)',
@@ -90,10 +90,9 @@ def evaluation_indicator(nps: str = None, retirement: str = None) -> str:  # get
     )
 
     bad_indicators_comment = (
-        'Стоит повнимательнее быть к своим ученикам 🥺',
-        'Стоит задуматься, в чем может быть проблема 🙄',
         'Можно попробовать поискать ещё подход к ребятам. Непобедимых не бывает 💪',
-        'Всегда можно обратиться за помощью :)'
+        'Всегда можно обратиться за помощью :)',
+        'Если вы чувствуете, что вам нужна помощь, вы всегда можете обратиться к любому сотруднику ВУЦ 🙂',
     )
 
     if nps and nps[-1] == '%':
@@ -116,12 +115,20 @@ def evaluation_indicator(nps: str = None, retirement: str = None) -> str:  # get
         return choice(bad_indicators_comment)
 
 
+def get_name_patronymic(name: str):
+    name = name.split()
+    if len(name) == 3 or len(name) == 4:  # 4 -- could be maiden name
+        return " ".join(name[-2:])
+    elif len(name) == 2:
+        return name[-1]
+
+
 def indicators_message(nps: str,
                        retirement: str,
                        average_nps: str,
                        average_retirement: str,
                        redflags: str,
-                       need_comments: bool = False) -> tuple:
+                       actual_sem_flag: bool = False) -> tuple:
     """
     Returns a message and an indicators flag (are there indicators or not)
     """
@@ -136,9 +143,9 @@ def indicators_message(nps: str,
     nps_comment = ""
     retirement_comment = ""
 
-    if need_comments:
-        nps_comment = f'💭 `{evaluation_indicator(nps=nps)}`'
-        retirement_comment = f'💭 `{evaluation_indicator(retirement=retirement)}`'
+    if actual_sem_flag:
+        nps_comment = f'💭 `{evaluation_indicator_message(nps=nps)}`'
+        retirement_comment = f'💭 `{evaluation_indicator_message(retirement=retirement)}`'
 
     message = f'📌 *Показатели*'
 
@@ -163,9 +170,8 @@ def indicators_message(nps: str,
                    f'Если вы думаете, что это ошибка, пожалуйста, обратитесь к  {RESPONSIBLE_FOR_THE_BOT}'
 
     if redflags:
-        message += f'\n\n*Количество редфлагов — {redflags}*.\n' \
-                   f'Для уточнения информации по причинам получения рефдлагов ' \
-                   f'обратитесь к вашему руководителю.'
+        message += f'\n\n*Количество редфлагов — *{redflags}.\n'
+
     return message, True
 
 
@@ -173,13 +179,13 @@ def current_group_detailing_nps_message(info):
     if not info:
         return ""
 
-    result = f"\n\n\n📌  *Детализация по группам*\n\n"
+    result = f"\n\n\n📌 *Детализация по группам*\n\n"
 
     info = info.split("\n")
     table = []
     for s in info:
         item = s.split("\t")
-        logger.debug(item)
+        # logger.debug(item)
         curse = match(r"[А-Яа-яЁёA-Za-z/+\-]+", item[0])
         if not curse:
             return ""
@@ -187,49 +193,51 @@ def current_group_detailing_nps_message(info):
         group = item[0].split("-")
         if not group:
             pass
-        item[0] = curse[0] + "-" + group[1]
+        item[0] = curse[0] + "-" + group[-2]
         table.append(item)
     result = result + "`" + tabulate(table, headers=["Группа", "NPS"]) + "`"
 
     return result
 
 
-grade_3_emoji = "😃😄😁😀🥰😍😱🤠"
+grade_3_emoji = "😃😄😁😀🥰😍🤠"
 grade_2_emoji = "🙂🙃😊😌🤗😉"
 grade_1_emoji = "🤨🥸🧐😶🤔🙄"
 grade_0_emoji = "😔😒😕🙁😓😶😵‍💫"
 grade_emoji = (grade_0_emoji, grade_1_emoji, grade_2_emoji, grade_3_emoji)
 
 
-def grade_info_message(info):
+def grade_info_message(info, actual_sem=False):
     if not info:
         return ""
     result = "\n\n*Ваш грейд —  "
     grade = info[:1]
-    result += grade + f"{choice(grade_emoji[int(grade)])}" + "*"
+    result += grade + f" {choice(grade_emoji[int(grade)])}" + "*"
+    if actual_sem:
+        result += f"\nПодробнее о формировании грейда, NPS и редфлагах можете почитать в [этой статье]({GRADE_INFO_STATE_LINK})."
     return result
 
-def grade_info_message() -> str:
-    n = ' ' * 8
-
-    return '*Грейд 3:*\n' + \
-           n + 'NPS >=83%\n' + \
-           n + 'Выбываемость <= 7%\n' + \
-           n + '*🤑 Премия — 30%*\n\n' + \
-           '*Грейд 2:*\n' + \
-           n + 'NPS >= 72%\n' + \
-           n + 'Выбываемость <= 10%\n' + \
-           n + '*💰 Премия — 15%*\n\n' + \
-           '*Грейд 1:*\n' + \
-           n + 'NPS  >= 60%\n' + \
-           n + 'Выбываемость <= 13%\n' + \
-           n + '*💵 Премия — 5%*\n\n' + \
-           '*Грейд 0:*\n' + \
-           n + 'NPS  < 60%\n' + \
-           n + 'Выбываемость > 13%\n' + \
-           n + '*💸 Премия — 0%*\n\n' + \
-           '*Итоговый грейд — минимальный из двух грейдов по NPS и по выбываемости.*\n' \
-           'Например, по выбываемости грейд 2, а по NPS — 3. \nИтоговый грейд — 2.\n' \
-           'Также на итоговый грейд влияют редфлаги.\n\n' \
-           '_За более подробной информацией вы можете заглянуть в статью в Базе Знаний. ' \
-           'Ссылка прикреплена к кнопке ниже._'
+# def grade_info_message() -> str:
+#     n = ' ' * 8
+#
+#     return '*Грейд 3:*\n' + \
+#            n + 'NPS >=83%\n' + \
+#            n + 'Выбываемость <= 7%\n' + \
+#            n + '*🤑 Премия — 30%*\n\n' + \
+#            '*Грейд 2:*\n' + \
+#            n + 'NPS >= 72%\n' + \
+#            n + 'Выбываемость <= 10%\n' + \
+#            n + '*💰 Премия — 15%*\n\n' + \
+#            '*Грейд 1:*\n' + \
+#            n + 'NPS  >= 60%\n' + \
+#            n + 'Выбываемость <= 13%\n' + \
+#            n + '*💵 Премия — 5%*\n\n' + \
+#            '*Грейд 0:*\n' + \
+#            n + 'NPS  < 60%\n' + \
+#            n + 'Выбываемость > 13%\n' + \
+#            n + '*💸 Премия — 0%*\n\n' + \
+#            '*Итоговый грейд — минимальный из двух грейдов по NPS и по выбываемости.*\n' \
+#            'Например, по выбываемости грейд 2, а по NPS — 3. \nИтоговый грейд — 2.\n' \
+#            'Также на итоговый грейд влияют редфлаги.\n\n' \
+#            '_За более подробной информацией вы можете заглянуть в статью в Базе Знаний. ' \
+#            'Ссылка прикреплена к кнопке ниже._'

@@ -9,7 +9,7 @@ TELEGRAM_BOT_TOKEN_TEST = os.getenv('TELEGRAM_BOT_TOKEN_KATE')
 KNOWLEDGE_BASE_LINK = \
     'https://www.notion.so/mshp/185484d383dd46b8bc9d2c130693fff3?v=dcfb3fb534cf4ccba3122631d8e54dec'
 
-GRADE_ARTICLE_KB = 'https://www.notion.so/itc-shp/NPS-7b1081b7e47d48dbb58c81adc1aa5acc'
+GRADE_INFO_STATE_LINK = 'https://www.notion.so/mshp/NPS-7b1081b7e47d48dbb58c81adc1aa5acc'
 
 # data for notion api
 database_id_history_of_indicators = "0223e0cec25b4509b0b21daf28a01c1c"

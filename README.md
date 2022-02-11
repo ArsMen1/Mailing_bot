@@ -8,8 +8,7 @@
 
 1. Создайте файл .env следующей структуры:
   ```bash
-CNC_SPREADSHEET_ID=
 TELEGRAM_BOT_TOKEN=
 ```
-2. Создайте файл credentails.json
-3. Создайте файл token.json для гуглтаблиц
+
+2. Измените в mailing_bot/shp_mailing_bot/config.py ответственного за бота

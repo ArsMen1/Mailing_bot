@@ -5,6 +5,7 @@ from typing import Union
 from mailing_bot.shp_mailing_bot.config import GET_PREV_SEM, GET_NEXT_SEM, ACTUAL_SEM
 import mailing_bot.shp_mailing_bot.message_creator as messenger
 from mailing_bot.shp_mailing_bot.prep import Prep, semesters_names
+from mailing_bot.logger_bot import logger
 
 prev_keyboard = InlineKeyboardMarkup([[InlineKeyboardButton("Предыдущий семестр", callback_data=GET_PREV_SEM)]
                                       ])
@@ -19,10 +20,10 @@ def get_indicators(prep: Prep) -> Union[str, None]:
     sem = semesters_names[prep.sem_pointer]
     indicators = prep.semesters_indicators[sem]
 
-    need_comments = False
+    actual_sem_flag = False
 
     if sem == ACTUAL_SEM:
-        need_comments = True
+        actual_sem_flag = True
 
     if indicators and any((indicators.nps,
                            indicators.retirement,
@@ -33,7 +34,7 @@ def get_indicators(prep: Prep) -> Union[str, None]:
                                                                            average_nps,
                                                                            average_retirement,
                                                                            indicators.redflags,
-                                                                           need_comments=need_comments)
+                                                                           actual_sem_flag=actual_sem_flag)
 
         return indicators_message
     return
@@ -62,13 +63,22 @@ def get_right_keyboard(prep):
 def get_indicators_action(update: Update, context: CallbackContext) -> None:
     message = update.message.reply_text('Секундочку, чичас поищу')
 
-    prep = Prep(update.effective_user.id)
+    prep = Prep(update.effective_user.id, update.effective_user.name)
+    if prep.status == "Работает – ассистент":
+        message.edit_text("Уважаемый асисстент, сейчас у вас нет грейда. Он у вас появится, "
+                          "когда вы обмотаетесь в кокон и превратитесь в прекрасного преподавателя 🦋")
+        return
+
     sem = semesters_names[prep.sem_pointer]
     final_message = f"*Семестр {sem}\n\n\n*"
 
     final_message = final_message + get_indicators(prep) + \
-                    messenger.grade_info_message(prep.semesters_indicators[sem].grade) + \
-                    messenger.current_group_detailing_nps_message(prep.semesters_indicators[sem].group_detailing)
+                    messenger.grade_info_message(
+                        prep.semesters_indicators[sem].grade, actual_sem=(sem == ACTUAL_SEM)) + \
+                    messenger.current_group_detailing_nps_message(
+                        prep.semesters_indicators[
+                            sem].group_detailing)
 
     reply_markup = get_right_keyboard(prep)
     message.edit_text(final_message, parse_mode=ParseMode.MARKDOWN, reply_markup=reply_markup)
+    logger.info(f"[{prep.tg_name}] got his indicators.")

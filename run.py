@@ -10,21 +10,22 @@ from mailing_bot.logger_bot import logger
 
 def main():
     try:
-        logger.info('Запуск...')
+        logger.info('Starting...')
         updater = Updater(token=config.TELEGRAM_BOT_TOKEN_TEST)
-        logger.info('Подключение к telegram API установлено.')
+        logger.info('Connection to telegram API established.')
 
         init_dispatcher(updater)
 
-        logger.info('Бот запущен.')
+        logger.info('The bot is alive.')
 
         updater.start_polling()
         updater.idle()
     except InvalidToken:
-        logger.critical('В настройках бота указан некорректный токен. Дальнейшая работа бота невозможна, останов.')
+        logger.critical(
+            'An incorrect token is specified in the bot settings. Further work of the bot is impossible, stop.')
         sys.exit(101)
     except NetworkError:
-        logger.critical('Отсутствует подключение к сети интернет. Дальнейшая работа бота невозможна, останов.')
+        logger.critical('There is no internet connection. Further work of the bot is impossible, stop.')
         sys.exit(102)
 
 
