@@ -43,12 +43,24 @@ def get_indicators(prep: Prep) -> Union[str, None]:
 def get_right_keyboard(prep):
     pointer = prep.sem_pointer
 
-    there_is_ahead_flag = len(semesters_names) > pointer + 1 and \
-                          prep.semesters_indicators[semesters_names[pointer + 1]] and \
-                          any(prep.semesters_indicators[semesters_names[pointer + 1]])
-    there_is_behind_flag = pointer > 0 and \
-                           prep.semesters_indicators[semesters_names[pointer - 1]] and \
-                           any(prep.semesters_indicators[semesters_names[pointer - 1]])
+    there_is_ahead_flag = False
+    there_is_behind_flag = False
+
+    for i in range(1, len(semesters_names) - pointer):
+        if len(semesters_names) > pointer + i \
+                and prep.semesters_indicators[semesters_names[pointer + i]] \
+                and any(prep.semesters_indicators[semesters_names[pointer + i]]):
+            there_is_ahead_flag = True
+            break
+
+    for i in range(1, pointer):
+        if pointer > 0 \
+                and prep.semesters_indicators[semesters_names[pointer - i]] \
+                and any(prep.semesters_indicators[semesters_names[pointer - i]]):
+            there_is_behind_flag = True
+            print(prep.semesters_indicators[semesters_names[pointer - i]])
+            print(pointer)
+            break
 
     if there_is_ahead_flag and there_is_behind_flag:
         return double_keyboard
