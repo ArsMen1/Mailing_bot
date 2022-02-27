@@ -58,8 +58,6 @@ def get_right_keyboard(prep):
                 and prep.semesters_indicators[semesters_names[pointer - i]] \
                 and any(prep.semesters_indicators[semesters_names[pointer - i]]):
             there_is_behind_flag = True
-            print(prep.semesters_indicators[semesters_names[pointer - i]])
-            print(pointer)
             break
 
     if there_is_ahead_flag and there_is_behind_flag:
