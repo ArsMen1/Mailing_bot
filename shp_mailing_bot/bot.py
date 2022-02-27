@@ -17,7 +17,7 @@ def start_action(update: Update, context: CallbackContext) -> None:
     update.message.reply_text(f'Здравствуйте, {get_name_patronymic(prep.name)}! '
                               f'Рад, что вы заглянули ко мне в гости :)\n\n'
                               f'*Я бот для преподавателей Школы Программистов.* '
-                              f'Я очень полезный ☺️\n\n\n'
+                              f'Я очень полезный ☺️\n\n'
                               f'▫️Буду *присылать вам важную информацию*, '
                               f'которую мне передают мои секретные агенты. Только тсс 🤫\n'
                               f'▫️Также в моей книжечке записаны *ваши показатели* (NPS, выбываемость, грейд), '
@@ -26,7 +26,7 @@ def start_action(update: Update, context: CallbackContext) -> None:
                               f'\nДавайте осмотримся, введите "/" или воспользуйтесь меню команд.',
                               parse_mode=ParseMode.MARKDOWN)
     # update.message.reply_text(f"Здравствуйте, {get_name_patronymic(prep.name)}.")
-    logger.info(f'[{prep.tg_name}] start message sent.')
+    logger.info(f'[{prep.prep_tg_name}] start message sent.')
 
 
 def help_action(update: Update, context: CallbackContext):

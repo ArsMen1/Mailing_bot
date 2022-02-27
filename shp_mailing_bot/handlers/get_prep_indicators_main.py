@@ -81,4 +81,4 @@ def get_indicators_action(update: Update, context: CallbackContext) -> None:
 
     reply_markup = get_right_keyboard(prep)
     message.edit_text(final_message, parse_mode=ParseMode.MARKDOWN, reply_markup=reply_markup)
-    logger.info(f"[{prep.tg_name}] got his indicators.")
+    logger.info(f"[{prep.prep_tg_name}] got his indicators.")

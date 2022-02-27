@@ -27,7 +27,7 @@ def semesters_navigator(change_sem_func):
 
         reply_markup = get_right_keyboard(prep)
         query.edit_message_text(final_message, parse_mode=ParseMode.MARKDOWN, reply_markup=reply_markup)
-        logger.info(f"[{prep.tg_name}] goes to {sem=}")
+        logger.info(f"[{prep.prep_tg_name}] goes to {sem=}")
 
     return wrapper
 

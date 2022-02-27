@@ -5,12 +5,13 @@ from json import dump
 
 
 class NotionParser:
-    def __init__(self, prep_id: int = None):
+    def __init__(self, prep_id: int = None, tg_name: str = None):
         self.response = None
         self.prep_id = prep_id
         self.prep_info = None
+        self.tg_name = tg_name
         self.database_id = config.database_id_history_of_indicators
-        self.token = config.token
+        self.token = config.NOTION_BOT_TOKEN
         self.headers = {
             "Authorization": "Bearer " + self.token,
             "Content-Type": "application/json",
@@ -52,13 +53,13 @@ class NotionParser:
         if field_type == "rich_text":  # text
             if data[field]["rich_text"] and "plain_text" in data[field]["rich_text"][0]:
                 return data[field]["rich_text"][0]["plain_text"]
-            logger.debug(f"[{self.prep_id}]  no info for {field}, crab")
+            logger.debug(f"[{self.tg_name}]  no info for {field}, crab")
             return None
 
         elif field_type == "title":
             if data[field]["title"]:
                 return data[field]["title"][0]["plain_text"]
-            logger.debug(f"[{self.prep_id}] there is no title {field=}, he looks like anonymous")
+            logger.debug(f"[{self.tg_name}] there is no title {field=}, he looks like anonymous")
             return None
 
         elif field_type == "rollup":  # rollup
@@ -67,7 +68,7 @@ class NotionParser:
                     data[field]["rollup"]["array"][0][
                         "select"]:  # if field type -- select if field is not empty
                 return data[field]["rollup"]["array"][0]["select"]["name"]
-            logger.debug(f"[{self.prep_id}] no data in rollup about it {field=}")
+            logger.debug(f"[{self.tg_name}] no data in rollup about it {field=}")
             return None
 
         elif field_type == "select":  # select, if field is empty, it will not be sent

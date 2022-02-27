@@ -22,24 +22,24 @@ class Prep:
     # del _average_indicators
     # del AverageIndicatorsItem
 
-    def __new__(cls, prep_id: int, tg_name: str):
+    def __new__(cls, prep_id: int, prep_tg_name: str):
         if prep_id not in cls.preps_cashed_list:
             cls.preps_cashed_list[prep_id] = super().__new__(cls)
         prep = cls.preps_cashed_list[prep_id]
 
         return prep
 
-    def __init__(self, prep_id, tg_name: str):
+    def __init__(self, prep_id, prep_tg_name: str):
         if hasattr(self, "id"):
-            logger.debug(f"[{self.tg_name}] exists already, go on.")
+            logger.debug(f"[{self.prep_tg_name}] exists already, go on.")
             return
         self.id: int = prep_id
-        self.tg_name: str = tg_name
-        self.info: [NotionParserPrep] = NotionParserPrep(self.id, self.tg_name).read_database()
+        self.prep_tg_name: str = prep_tg_name
+        self.info: [NotionParserPrep] = NotionParserPrep(self.id, self.prep_tg_name).read_database()
         self.status: str = self.info.get_field_info("Статус")
         self.does_exists: bool = bool((self.status != "Уволен") and self.info)
         if not self.does_exists:
-            logger.debug(f"[{self.tg_name}] is {self.status}, {self.info=}. His instance is None. That's what I say.")
+            logger.debug(f"[{self.prep_tg_name}] is {self.status}, {self.info=}. His instance is None. That's what I say.")
             return
         self.name: str = self.info.get_field_info("Преподаватель")
         if self.status == "Работает – ассистент":
@@ -62,7 +62,7 @@ class Prep:
                 self.info.get_field_info(f"Грейд {sem}"))
             if any(sem_info):
                 self.semesters_indicators[sem] = sem_info
-        logger.debug(f"[{self.tg_name}] created prep instance.")
+        logger.debug(f"[{self.prep_tg_name}] created prep instance.")
 
         """
         Turns self.semester_indicators into something like that:

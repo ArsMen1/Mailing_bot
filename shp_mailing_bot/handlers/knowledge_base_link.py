@@ -18,6 +18,6 @@ def get_kd_link_action(update: Update, context: CallbackContext) -> None:  # get
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
-    logger.info(f"[{update.effective_user.name}] got link to Saint Knowledge Base.")
+    logger.info(f"[{update.effective_user.name}] got Saint Knowledge Base link.")
     update.message.reply_text(kd_link_message(),
                               reply_markup=reply_markup)
