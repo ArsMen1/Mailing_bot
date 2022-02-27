@@ -18,7 +18,13 @@ def main():
 
         logger.info('The bot is alive.')
 
-        updater.start_polling()
+        # updater.start_polling()
+        updater.start_webhook(listen='188.93.210.129',
+                              port=443,
+                              url_path='',
+                              key='key.pem',
+                              cert='cert.pem',
+                              webhook_url='https://188.93.210.129:443/')
         updater.idle()
     except InvalidToken:
         logger.critical(

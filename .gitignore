@@ -1,3 +1,4 @@
+*.pem
 .env
 token.json
 credentials.json
