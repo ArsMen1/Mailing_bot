@@ -1,6 +1,6 @@
 from requests import request
-import mailing_bot.shp_mailing_bot.config as config
-from mailing_bot.logger_bot import logger
+import shp_mailing_bot.config as config
+from logger_bot import logger
 from json import dump
 
 

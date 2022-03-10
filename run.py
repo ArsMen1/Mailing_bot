@@ -2,10 +2,10 @@ import sys
 
 from telegram.error import InvalidToken, NetworkError
 from telegram.ext import Updater
-import mailing_bot.shp_mailing_bot.config as config
+import shp_mailing_bot.config as config
 
-from mailing_bot.shp_mailing_bot.bot import init_dispatcher
-from mailing_bot.logger_bot import logger
+from shp_mailing_bot.bot import init_dispatcher
+from logger_bot import logger
 
 
 def main():

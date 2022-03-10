@@ -1,9 +1,9 @@
 import cachetools.func
 from collections import namedtuple
 
-from mailing_bot.logger_bot import logger
-from mailing_bot.shp_mailing_bot.notion_parse.notion_parser import NotionParser
-from mailing_bot.shp_mailing_bot.config import TG_ID_MEAN_INDICATORS, ACTUAL_SEM, semesters_names
+from logger_bot import logger
+from shp_mailing_bot.notion_parse.notion_parser import NotionParser
+from shp_mailing_bot.config import TG_ID_MEAN_INDICATORS, ACTUAL_SEM, semesters_names
 
 
 class NotionParserAverageMeans(NotionParser):

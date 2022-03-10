@@ -1,8 +1,8 @@
 import cachetools.func
 
 from mailing_bot.shp_mailing_bot.notion_parse.notion_parser import NotionParser
-from mailing_bot.shp_mailing_bot.config import ACTUAL_SEM
-from mailing_bot.logger_bot import logger
+from shp_mailing_bot.config import ACTUAL_SEM
+from logger_bot import logger
 
 
 class NotionParserPrep(NotionParser):

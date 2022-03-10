@@ -8,7 +8,7 @@ from mailing_bot.shp_mailing_bot.config import RESPONSIBLE_FOR_THE_BOT, GET_NEXT
 from mailing_bot.shp_mailing_bot.message_creator import get_name_patronymic
 
 from mailing_bot.shp_mailing_bot.handlers import get_prep_indicators_main, knowledge_base_link
-from mailing_bot.shp_mailing_bot.prep import Prep
+from shp_mailing_bot.prep import Prep
 
 
 def start_action(update: Update, context: CallbackContext) -> None:

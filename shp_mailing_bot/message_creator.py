@@ -1,8 +1,8 @@
 from random import choice
 from re import search, match
-from mailing_bot.shp_mailing_bot.config import RESPONSIBLE_FOR_THE_BOT, GRADE_INFO_STATE_LINK
+from shp_mailing_bot.config import RESPONSIBLE_FOR_THE_BOT, GRADE_INFO_STATE_LINK
 from tabulate import tabulate
-from mailing_bot.logger_bot import logger
+from logger_bot import logger
 
 are_you_really_prep_message = 'Не могу вас найти в моей тетрадочке, вы точно преподаватель? 🥸\n' \
                               f'Если да, то скажите про это моей мамочке {RESPONSIBLE_FOR_THE_BOT}, ' \

@@ -2,10 +2,10 @@ from telegram import Update, ParseMode, InlineKeyboardButton, InlineKeyboardMark
 from telegram.ext import CallbackContext
 from typing import Union
 
-from mailing_bot.shp_mailing_bot.config import GET_PREV_SEM, GET_NEXT_SEM, ACTUAL_SEM
-import mailing_bot.shp_mailing_bot.message_creator as messenger
-from mailing_bot.shp_mailing_bot.prep import Prep, semesters_names
-from mailing_bot.logger_bot import logger
+from shp_mailing_bot.config import GET_PREV_SEM, GET_NEXT_SEM, ACTUAL_SEM
+import shp_mailing_bot.message_creator as messenger
+from shp_mailing_bot.prep import Prep, semesters_names
+from logger_bot import logger
 
 prev_keyboard = InlineKeyboardMarkup([[InlineKeyboardButton("Предыдущий семестр", callback_data=GET_PREV_SEM)]
                                       ])

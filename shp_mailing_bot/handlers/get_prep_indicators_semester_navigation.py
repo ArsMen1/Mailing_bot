@@ -1,11 +1,11 @@
 from telegram import Update, ParseMode
 from telegram.ext import CallbackContext
 
-from mailing_bot.shp_mailing_bot import message_creator as messenger
-from mailing_bot.shp_mailing_bot.config import semesters_names, ACTUAL_SEM
-from mailing_bot.shp_mailing_bot.handlers.get_prep_indicators_main import get_indicators, get_right_keyboard
-from mailing_bot.shp_mailing_bot.prep import Prep
-from mailing_bot.logger_bot import logger
+from shp_mailing_bot import message_creator as messenger
+from shp_mailing_bot.config import semesters_names, ACTUAL_SEM
+from shp_mailing_bot.handlers.get_prep_indicators_main import get_indicators, get_right_keyboard
+from shp_mailing_bot.prep import Prep
+from logger_bot import logger
 
 
 def semesters_navigator(change_sem_func):

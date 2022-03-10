@@ -1,10 +1,10 @@
 from cachetools import TTLCache
 from collections import namedtuple
 
-from mailing_bot.shp_mailing_bot.notion_parse.notion_parser_prep_indicators import NotionParserPrep
-from mailing_bot.shp_mailing_bot.notion_parse.notion_parser_average_indicators import NotionParserAverageMeans
-from mailing_bot.shp_mailing_bot.config import ttl, semesters_names
-from mailing_bot.logger_bot import logger
+from shp_mailing_bot.notion_parse.notion_parser_prep_indicators import NotionParserPrep
+from shp_mailing_bot.notion_parse.notion_parser_average_indicators import NotionParserAverageMeans
+from shp_mailing_bot.config import ttl, semesters_names
+from logger_bot import logger
 
 
 class Prep:
