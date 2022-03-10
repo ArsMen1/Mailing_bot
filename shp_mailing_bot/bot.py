@@ -2,12 +2,12 @@ from telegram import Update, ParseMode
 from telegram.ext import CommandHandler, MessageHandler, Filters, CallbackContext, \
     CallbackQueryHandler
 
-import mailing_bot.shp_mailing_bot.handlers.get_prep_indicators_semester_navigation
-from mailing_bot.logger_bot import logger
-from mailing_bot.shp_mailing_bot.config import RESPONSIBLE_FOR_THE_BOT, GET_NEXT_SEM, GET_PREV_SEM
-from mailing_bot.shp_mailing_bot.message_creator import get_name_patronymic
+import shp_mailing_bot.handlers.get_prep_indicators_semester_navigation
+from logger_bot import logger
+from shp_mailing_bot.config import RESPONSIBLE_FOR_THE_BOT, GET_NEXT_SEM, GET_PREV_SEM
+from shp_mailing_bot.message_creator import get_name_patronymic
 
-from mailing_bot.shp_mailing_bot.handlers import get_prep_indicators_main, knowledge_base_link
+from shp_mailing_bot.handlers import get_prep_indicators_main, knowledge_base_link
 from shp_mailing_bot.prep import Prep
 
 
@@ -55,12 +55,12 @@ def init_dispatcher(updater: Update):
     dispatcher.add_handler(CommandHandler('get_indicators', get_prep_indicators_main.get_indicators_action))
 
     dispatcher.add_handler(CallbackQueryHandler(
-        mailing_bot.shp_mailing_bot.handlers.get_prep_indicators_semester_navigation.get_prev_sem_indicators_action,
+        shp_mailing_bot.handlers.get_prep_indicators_semester_navigation.get_prev_sem_indicators_action,
         pattern=GET_PREV_SEM))
     # get previous semester handler
 
     dispatcher.add_handler(CallbackQueryHandler(
-        mailing_bot.shp_mailing_bot.handlers.get_prep_indicators_semester_navigation.get_next_sem_indicators_action,
+        shp_mailing_bot.handlers.get_prep_indicators_semester_navigation.get_next_sem_indicators_action,
         pattern=GET_NEXT_SEM))
     # get next semester handler
 
