@@ -17,7 +17,7 @@ class NotionParserPrep(NotionParser):
             logger.debug(f"[{self.tg_name}] no info for {field=}")
             return None
 
-        res = self._find_field_meaning(field, self.prep_info)
+        res = self._find_field_meaning(field)
         logger.info(f"[{self.tg_name}] {field} = {res}")
 
         return res

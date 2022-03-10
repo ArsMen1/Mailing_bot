@@ -16,7 +16,7 @@ class NotionParserAverageMeans(NotionParser):
         if field not in self.prep_info.keys():
             return None
 
-        res = self._find_field_meaning(field, self.prep_info)
+        res = self._find_field_meaning(field)
 
         return res
 

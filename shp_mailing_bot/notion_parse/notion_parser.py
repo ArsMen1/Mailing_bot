@@ -5,7 +5,7 @@ from json import dump
 
 
 class NotionParser:
-    def __init__(self, prep_id: int = None, tg_name: str = None):
+    def __init__(self, prep_id: int, tg_name: str = None):
         self.response = None
         self.prep_id = prep_id
         self.prep_info = None
@@ -42,37 +42,40 @@ class NotionParser:
         logger.debug(f"I have read a database, it's nothing interesting there: {self.prep_info}")
         return self
 
-    def _find_field_meaning(self, field: str, data: dict):
-        if not data:
+    def _find_field_meaning(self, field: str):
+        if not self.prep_info:
             logger.debug("No data")
             return None
-        if field not in data.keys():
-            logger.debug(f"[field] not in data.keys(). {data.keys()=} only :(")
-        field_type = data[field]["type"]
+        if field not in self.prep_info.keys():
+            logger.debug(f"[field] not in self.prep_info.keys(). {self.prep_info.keys()=} only :(")
+        field_type = self.prep_info[field]["type"]
 
         if field_type == "rich_text":  # text
-            if data[field]["rich_text"] and "plain_text" in data[field]["rich_text"][0]:
-                return data[field]["rich_text"][0]["plain_text"]
+            if self.prep_info[field]["rich_text"] and "plain_text" in self.prep_info[field]["rich_text"][0]:
+                return self.prep_info[field]["rich_text"][0]["plain_text"]
             logger.debug(f"[{self.tg_name}]  no info for {field}, crab")
             return None
 
         elif field_type == "title":
-            if data[field]["title"]:
-                return data[field]["title"][0]["plain_text"]
+            if self.prep_info[field]["title"]:
+                return self.prep_info[field]["title"][0]["plain_text"]
             logger.debug(f"[{self.tg_name}] there is no title {field=}, he looks like anonymous")
             return None
 
         elif field_type == "rollup":  # rollup
-            if data[field]["rollup"]["array"] and \
-                    data[field]["rollup"]["array"][0]["type"] == "select" and \
-                    data[field]["rollup"]["array"][0][
+            if self.prep_info[field]["rollup"]["array"] and \
+                    self.prep_info[field]["rollup"]["array"][0]["type"] == "select" and \
+                    self.prep_info[field]["rollup"]["array"][0][
                         "select"]:  # if field type -- select if field is not empty
-                return data[field]["rollup"]["array"][0]["select"]["name"]
+                return self.prep_info[field]["rollup"]["array"][0]["select"]["name"]
             logger.debug(f"[{self.tg_name}] no data in rollup about it {field=}")
             return None
 
         elif field_type == "select":  # select, if field is empty, it will not be sent
-            return data[field]["select"]["name"]
+            return self.prep_info[field]["select"]["name"]
 
         elif field_type == "number":  # number, if field is empty, it will not be sent
-            return data[field]["number"]
+            return self.prep_info[field]["number"]
+
+        elif field_type == "formula" and self.prep_info[field][field_type]["type"] == "string":
+            return self.prep_info[field][field_type]["string"]
