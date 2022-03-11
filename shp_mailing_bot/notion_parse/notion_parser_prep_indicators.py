@@ -1,6 +1,6 @@
 import cachetools.func
 
-from mailing_bot.shp_mailing_bot.notion_parse.notion_parser import NotionParser
+from shp_mailing_bot.notion_parse.notion_parser import NotionParser
 from shp_mailing_bot.config import ACTUAL_SEM
 from logger_bot import logger
 

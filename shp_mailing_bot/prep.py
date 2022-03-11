@@ -46,6 +46,10 @@ class Prep:
             return
         self.IndicatorsItem: [namedtuple] = namedtuple("IndicatorsItem",
                                                        ["nps",
+                                                        "nps_positive_per",
+                                                        "nps_neutral_per",
+                                                        "nps_negative_per",
+                                                        "nps_retirement_per",
                                                         "retirement",
                                                         "redflags",
                                                         "group_detailing",
@@ -54,8 +58,16 @@ class Prep:
         self.sem_pointer: [int] = len(semesters_names) - 1
 
         for sem in self.semesters_indicators.keys():
+            percent_detalization = self.info.get_field_info(f"Детализация по процентам {sem}")
+            if not percent_detalization:
+                percent_detalization = [None] * 4
+                logger.info(f"[{self.prep_tg_name}] has no nps percent detalization.")
             sem_info = self.IndicatorsItem(
                 self.info.get_field_info(f"NPS {sem}"),
+                percent_detalization[0],
+                percent_detalization[1],
+                percent_detalization[2],
+                percent_detalization[3],
                 self.info.get_field_info(f"Выбываемость {sem}"),
                 self.info.get_field_info(f"Редфлаги {sem}"),
                 self.info.get_field_info(f"Детализация {sem}"),

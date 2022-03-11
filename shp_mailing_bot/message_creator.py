@@ -1,5 +1,5 @@
 from random import choice
-from re import search, match
+from re import findall
 from shp_mailing_bot.config import RESPONSIBLE_FOR_THE_BOT, GRADE_INFO_STATE_LINK
 from tabulate import tabulate
 from logger_bot import logger
@@ -91,8 +91,7 @@ def evaluation_indicator_message(grade: int = None) -> str:  # get comment for n
         "Неплохо! Дальше — больше 💪",
         "Неплохой результат :)",
         "Стабильные показатели. Неплохо!",
-        "Хорошая работа)",
-        "Прекрасно здесь то, что есть место для роста!"
+        "Хороший результат! И прекрасно здесь то, что есть место для роста :)"
     )
 
     grade_0_indicators_comment = (
@@ -117,6 +116,10 @@ def get_name_patronymic(name: str):
 
 
 def indicators_message(nps: str,
+                       nps_positive_per,
+                       nps_neutral_per,
+                       nps_negative_per,
+                       nps_retirement_per,
                        retirement: str,
                        average_nps: str,
                        average_retirement: str,
@@ -146,6 +149,12 @@ def indicators_message(nps: str,
         message += f'\n\n' \
                    f'*Ваш NPS — {nps}%.*\n' \
                    f'Средний NPS по школе — {average_nps}%.\n'
+        if any((nps_positive_per, nps_neutral_per, nps_negative_per, nps_retirement_per)):
+            f"\nПоложительные: {nps_positive_per}%." \
+            f"\nНейтральные: {nps_neutral_per + nps_retirement_per}% ({nps_neutral_per}% продолжают учиться, " \
+            f"{nps_retirement_per}% прекратили обучение)." \
+            f"\nНегативные: {nps_negative_per}%."
+
     else:
         message += '\n\n' \
                    'Информации по вашему NPS я не нашёл в своей книжечке 🧐\n' \
@@ -171,21 +180,17 @@ def current_group_detailing_nps_message(info):
         return ""
 
     result = f"\n\n\n📌 *Детализация по группам*\n\n"
-
     info = info.split("\n")
     table = []
-    for s in info:
-        item = s.split("\t")
-        # logger.debug(item)
-        curse = match(r"[А-Яа-яЁёA-Za-z/+\-]+", item[0])
-        if not curse:
-            return ""
-        # group = search(r"_?\w\d{3}", item[0])
-        group = item[0].split("-")
-        if not group:
-            pass
-        item[0] = curse[0] + "-" + group[-2]
-        table.append(item)
+    groupsre = \
+        r'^((?:\-[a-zA-Z]|[\s\/+a-zA-ZА-Яа-яёЁ])+)(?:-\d)?(?:_base_\d*|_spec_\d*)?(?:[_\w,]+?)?-((?:\w+,?)+)-(?:\d\d/\d\d).*$'
+    for line in info:
+        # line = [FORMAT_base_1-M204-21/22-I\t90,54%]
+        line = line.split("\t")
+        group = findall(groupsre, line[0])
+        # group[0][0]='C++'
+        # group[0][1]='_D108'
+        table.append((f"{group[0][0]}—{group[0][1]}", line[1]))
     result = result + "`" + tabulate(table, headers=["Группа", "NPS"]) + "`"
 
     return result

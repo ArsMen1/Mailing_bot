@@ -30,6 +30,10 @@ def get_indicators(prep: Prep) -> Union[str, None]:
                            indicators.redflags)):
         average_nps, average_retirement = prep.average_indicators[sem]
         indicators_message, indicators_flag = messenger.indicators_message(indicators.nps,
+                                                                           indicators.nps_positive_per,
+                                                                           indicators.nps_neutral_per,
+                                                                           indicators.nps_negative_per,
+                                                                           indicators.nps_retirement_per,
                                                                            indicators.retirement,
                                                                            average_nps,
                                                                            average_retirement,
