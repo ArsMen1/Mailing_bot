@@ -18,15 +18,14 @@ def main():
 
         logger.info('The bot is alive.')
 
-        updater.start_polling()
+        # updater.start_polling()
 
-        # updater.start_webhook(listen='188.93.210.129',
-        #                       port=4432,
-        #                       url_path='',
-        #                       key='key.pem',
-        #                       cert='cert.pem',
-        #                       webhook_url='https://188.93.210.129:443/')
-        # updater.idle()
+        updater.start_webhook(listen='0.0.0.0',
+                              port=5000,
+                              url_path='',
+                              cert='cert.pem',
+                              webhook_url='https://176.99.11.201:443/')
+        updater.idle()
     except InvalidToken:
         logger.critical(
             'An incorrect token is specified in the bot settings. Further work of the bot is impossible, stop.')
