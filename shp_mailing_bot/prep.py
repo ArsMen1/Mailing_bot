@@ -10,6 +10,7 @@ from logger_bot import logger
 class Prep:
     preps_cashed_list = TTLCache(maxsize=200, ttl=ttl)
     average_indicators = NotionParserAverageMeans().get_average_indicators()
+
     # getting average indicators for each semester
     # _average_indicators = NotionParserAverageMeans().read_database()
     # AverageIndicatorsItem: [namedtuple] = namedtuple("AverageIndicatorsItem", ["nps", "retirement"])
@@ -39,41 +40,47 @@ class Prep:
         self.status: str = self.info.get_field_info("Статус")
         self.does_exists: bool = bool((self.status != "Уволен") and self.info)
         if not self.does_exists:
-            logger.debug(f"[{self.prep_tg_name}] is {self.status}, {self.info=}. His instance is None. That's what I say.")
+            logger.debug(
+                f"[{self.prep_tg_name}] is {self.status}, {self.info=}. His instance is None. That's what I say.")
             return
         self.name: str = self.info.get_field_info("Преподаватель")
         if self.status == "Работает – ассистент":
             return
         self.IndicatorsItem: [namedtuple] = namedtuple("IndicatorsItem",
                                                        ["nps",
-                                                        "nps_positive_per",
-                                                        "nps_neutral_per",
-                                                        "nps_negative_per",
-                                                        "nps_retirement_per",
+                                                        "positive",
+                                                        "negative",
+                                                        "neutral",
                                                         "retirement",
                                                         "redflags",
                                                         "group_detailing",
                                                         "grade"])
         self.semesters_indicators: [dict] = dict.fromkeys(semesters_names)
+        # self.semesters_indicators={'18/19-I': None, '18/19-II': None, '19/20-I': None...}
+
         self.sem_pointer: [int] = len(semesters_names) - 1
 
         for sem in self.semesters_indicators.keys():
-            percent_detalization = self.info.get_field_info(f"Детализация по процентам {sem}")
-            if not percent_detalization:
-                percent_detalization = [None] * 4
-                logger.info(f"[{self.prep_tg_name}] has no nps percent detalization.")
+
+            votes_detailing = self.info.get_field_info(f"Детализация по голосам {sem}")
+            if not votes_detailing:
+                votes_detailing = [None] * 4
+                logger.info(f"[{self.prep_tg_name}] has no nps percent detailing.")
+            else:
+                votes_detailing = votes_detailing.split()
+                logger.debug(votes_detailing)
+
             sem_info = self.IndicatorsItem(
                 self.info.get_field_info(f"NPS {sem}"),
-                percent_detalization[0],
-                percent_detalization[1],
-                percent_detalization[2],
-                percent_detalization[3],
+                votes_detailing[0],
+                votes_detailing[1],
+                votes_detailing[2],
                 self.info.get_field_info(f"Выбываемость {sem}"),
                 self.info.get_field_info(f"Редфлаги {sem}"),
-                self.info.get_field_info(f"Детализация {sem}"),
+                self.info.get_field_info(f"Детализация по группам {sem}"),
                 self.info.get_field_info(f"Грейд {sem}"))
-            if any(sem_info):
-                self.semesters_indicators[sem] = sem_info
+            self.semesters_indicators[sem] = sem_info
+            logger.debug(f"{sem_info=}")
         logger.debug(f"[{self.prep_tg_name}] created prep instance.")
 
         """

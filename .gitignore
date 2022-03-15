@@ -5,3 +5,5 @@ credentials.json
 debug.log
 __pycache__
 /shp_mailing_bot/__pycache__
+/venv
+.idea

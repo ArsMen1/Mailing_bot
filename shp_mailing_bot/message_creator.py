@@ -46,9 +46,6 @@ def kd_link_message() -> str:
 
 
 def evaluation_indicator_message(grade: int = None) -> str:  # get comment for nps or retirement
-    if not grade:
-        logger.info("No grade")
-        return ""
 
     # phrases
     grade_3_indicators_comment = (
@@ -90,7 +87,6 @@ def evaluation_indicator_message(grade: int = None) -> str:  # get comment for n
     grade_1_indicators_comment = (
         "Неплохо! Дальше — больше 💪",
         "Неплохой результат :)",
-        "Стабильные показатели. Неплохо!",
         "Хороший результат! И прекрасно здесь то, что есть место для роста :)"
     )
 
@@ -116,25 +112,17 @@ def get_name_patronymic(name: str):
 
 
 def indicators_message(nps: str,
-                       nps_positive_per,
-                       nps_neutral_per,
-                       nps_negative_per,
-                       nps_retirement_per,
+                       positive: str,
+                       negative: str,
+                       neutral: str,
                        retirement: str,
                        average_nps: str,
                        average_retirement: str,
                        redflags: str,
-                       actual_sem_flag: bool = False) -> tuple:
+                       sem_pointer) -> str:
     """
     Returns a message and an indicators flag (are there indicators or not)
     """
-
-    if not nps and not retirement:
-        return 'Ой, не могу найти ваши показатели 👉🏻👈🏻\n\n' \
-               'Если вы преподаёте первый семестр, то просто дождитесь окончания семестра. ' \
-               'Ваши показатели только формируются\n\n' \
-               f'В противном случае для добавления показателей в базу обратитесь к {RESPONSIBLE_FOR_THE_BOT}.', \
-               False  # indicators flag
 
     # nps_comment = ""
     # retirement_comment = ""
@@ -149,47 +137,50 @@ def indicators_message(nps: str,
         message += f'\n\n' \
                    f'*Ваш NPS — {nps}%.*\n' \
                    f'Средний NPS по школе — {average_nps}%.\n'
-        if any((nps_positive_per, nps_neutral_per, nps_negative_per, nps_retirement_per)):
-            f"\nПоложительные: {nps_positive_per}%." \
-            f"\nНейтральные: {nps_neutral_per + nps_retirement_per}% ({nps_neutral_per}% продолжают учиться, " \
-            f"{nps_retirement_per}% прекратили обучение)." \
-            f"\nНегативные: {nps_negative_per}%."
-
     else:
         message += '\n\n' \
                    'Информации по вашему NPS я не нашёл в своей книжечке 🧐\n' \
                    f'Если вы думаете, что это ошибка, пожалуйста, обратитесь к  {RESPONSIBLE_FOR_THE_BOT}'
 
-    if retirement:
+    if any((positive, negative, neutral)):
+        message += f"\nГолоса распределились так:\n" \
+                   f"`положительные — {positive}\n" \
+                   f"отрицательные — {negative}\n" \
+                   f"нейтральные   — {int(neutral) + int(retirement)}\n" \
+                   f"(из них {retirement} прекратили обучение в школе)`"
+
+    if retirement and sem_pointer < 6:  # if sem 21/22-I and +
         message += f'\n\n' \
                    f'*Ваша выбываемость — {retirement}%.*\n' \
                    f'Средняя выбываемость по школе — {average_retirement}%.\n'
-    else:
+    elif sem_pointer < 6:
         message += '\n\n' \
                    'Информации по вашей выбываемости я не нашёл в своей книжечке 🧐\n' \
                    f'Если вы думаете, что это ошибка, пожалуйста, обратитесь к  {RESPONSIBLE_FOR_THE_BOT}'
 
     if redflags:
         message += f'\n\n*Количество редфлагов — *{redflags}.\n'
-
-    return message, True
+    return message
 
 
 def current_group_detailing_nps_message(info):
     if not info:
+        logger.info("No group detailing info.")
         return ""
 
     result = f"\n\n\n📌 *Детализация по группам*\n\n"
     info = info.split("\n")
     table = []
-    groupsre = \
-        r'^((?:\-[a-zA-Z]|[\s\/+a-zA-ZА-Яа-яёЁ])+)(?:-\d)?(?:_base_\d*|_spec_\d*)?(?:[_\w,]+?)?-((?:\w+,?)+)-(?:\d\d/\d\d).*$'
+    groups_re = \
+        r'^((?:\-[a-zA-Z]|[\s\/+a-zA-ZА-Яа-яёЁ])+)(?:-\d)?(?:_base_\d*|_spec_\d*)?(?:[_\w,]+?)?-((?:\w+,?)+)-(?:(\d\d/\d\d)|(\d\d)).*$'
     for line in info:
         # line = [FORMAT_base_1-M204-21/22-I\t90,54%]
+        if line == "":
+            continue
         line = line.split("\t")
-        group = findall(groupsre, line[0])
-        # group[0][0]='C++'
-        # group[0][1]='_D108'
+        group = findall(groups_re, line[0])
+        logger.debug(group)
+        logger.debug(line)
         table.append((f"{group[0][0]}—{group[0][1]}", line[1]))
     result = result + "`" + tabulate(table, headers=["Группа", "NPS"]) + "`"
 
@@ -212,6 +203,6 @@ def grade_info_message(info, actual_sem=False):
     if actual_sem:
         result += f"\n" \
                   f"💭 `{evaluation_indicator_message(grade=int(grade))}`"
-        result += f"\n[Статья о формировании грейда и NPS]" \
+        result += f"\n[Статья о том, как формируются показатели]" \
                   f"({GRADE_INFO_STATE_LINK})."
     return result
