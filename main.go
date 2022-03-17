@@ -13,7 +13,7 @@ func main() {
 	port := ":443"
 	proxy1 := os.Getenv("PROXY_ONE")
 	proxy2 := os.Getenv("PROXY_TWO")
-        fmt.Printf("(proxy1: %v \nproxy2: %v\n", proxy1, proxy1)
+        fmt.Printf("(proxy1: %v \nproxy2: %v\n", proxy1, proxy2)
 
 	// go StartLogServer("server1", port1)
 	// go StartLogServer("server2", port2)
@@ -28,19 +28,21 @@ func main() {
 // ProxyRequestHandler handles the http request using proxy
 func ProxyRequestHandler(proxy1, proxy2 string) func(http.ResponseWriter, *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
-                fmt.Printf("new request")
+                fmt.Println("new request")
+                fmt.Println("_______________________")
 		body, _ := ioutil.ReadAll(r.Body)
 		buf1 := ioutil.NopCloser(bytes.NewBuffer(body))
 		buf2 := ioutil.NopCloser(bytes.NewBuffer(body))
 		_, err := http.Post(proxy1, "application/json", buf1)
 		if err != nil {
-			fmt.Println(err)
+			fmt.Printf("proxy1 post: %v", err)
 		}
 		_, err = http.Post(proxy2, "application/json", buf2)
 		if err != nil {
-			fmt.Println(err)
+			fmt.Printf("proxy2 post: %v", err)
 		}
 		w.Write([]byte("ok"))
+                fmt.Println("_______________________")
 	}
 }
 

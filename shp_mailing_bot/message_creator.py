@@ -193,13 +193,14 @@ grade_1_emoji = "🤨🥸🧐😶🤔🙄"
 grade_0_emoji = "😔😒😕🙁😓😶😵‍💫"
 grade_emoji = (grade_0_emoji, grade_1_emoji, grade_2_emoji, grade_3_emoji)
 
-
 def grade_info_message(info, actual_sem=False):
     if not info:
         return ""
-    result = "\n\n*Ваш грейд —  "
     grade = info[0]
-    result += grade + ".*"
+    if int(grade) != 0:
+        result = f"\n\n*У вас премия {grade} категории.* "
+    else:
+        result = f"\n\n*К сожалению, вы не получили премию в этом семестре.*"
     if actual_sem:
         result += f"\n" \
                   f"💭 `{evaluation_indicator_message(grade=int(grade))}`"
