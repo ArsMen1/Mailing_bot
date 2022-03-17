@@ -9,7 +9,10 @@ import shp_mailing_bot.message_creator as messenger
 
 
 def get_kd_link_action(update: Update, context: CallbackContext) -> None:  # get knowledge base link button
-
+    prep = Prep(update.effective_user.id, update.effective_user.name)
+    if not prep.status:
+        update.message.reply_text("Извините, мне родители запретили разговаривать с незнакомцами 🥺")
+        return
 
     keyboard = [
         [

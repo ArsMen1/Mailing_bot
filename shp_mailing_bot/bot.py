@@ -5,7 +5,7 @@ from telegram.ext import CommandHandler, MessageHandler, Filters, CallbackContex
 import shp_mailing_bot.handlers.get_prep_indicators_semester_navigation
 from logger_bot import logger
 from shp_mailing_bot.config import RESPONSIBLE_FOR_THE_BOT, GET_NEXT_SEM, GET_PREV_SEM
-from shp_mailing_bot.message_creator import get_name_patronymic
+from shp_mailing_bot.message_creator import get_name_patronymic, are_you_really_prep_message
 
 from shp_mailing_bot.handlers import get_prep_indicators_main, knowledge_base_link
 from shp_mailing_bot.prep import Prep
@@ -14,6 +14,9 @@ from shp_mailing_bot.prep import Prep
 def start_action(update: Update, context: CallbackContext) -> None:
     """Send a message when the command /start is issued."""
     prep = Prep(update.effective_user.id, update.effective_user.name)
+    if not prep.status:
+        update.message.reply_text(are_you_really_prep_message)
+        return
     update.message.reply_text(f'Здравствуйте, {get_name_patronymic(prep.name)}! '
                               f'Рад, что вы заглянули ко мне в гости :)\n\n'
                               f'*Я бот для преподавателей Школы Программистов.* '

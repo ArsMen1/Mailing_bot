@@ -1,5 +1,6 @@
 from random import choice
 from re import findall
+from collections import namedtuple
 from shp_mailing_bot.config import RESPONSIBLE_FOR_THE_BOT, GRADE_INFO_STATE_LINK
 from tabulate import tabulate
 from logger_bot import logger
@@ -139,14 +140,13 @@ def indicators_message(nps: str,
                    f'Средний NPS по школе — {average_nps}%.\n'
     else:
         message += '\n\n' \
-                   'Информации по вашему NPS я не нашёл в своей книжечке 🧐\n' \
-                   f'Если вы думаете, что это ошибка, пожалуйста, обратитесь к  {RESPONSIBLE_FOR_THE_BOT}'
+                   'Информации по вашему NPS я не нашёл в своей книжечке 🧐\n'
 
     if any((positive, negative, neutral)):
         message += f"\nГолоса распределились так:\n" \
                    f"`положительные — {positive}\n" \
                    f"отрицательные — {negative}\n" \
-                   f"нейтральные   — {int(neutral) + int(retirement)}\n" \
+                   f"нейтральные   — {float(neutral.rstrip().replace(',', '.')[:-1]) + float(retirement.rstrip().replace(',', '.')[:-1])}%\n" \
                    f"(из них {retirement} прекратили обучение в школе)`"
 
     if retirement and sem_pointer < 6:  # if sem 21/22-I and +
@@ -155,12 +155,36 @@ def indicators_message(nps: str,
                    f'Средняя выбываемость по школе — {average_retirement}%.\n'
     elif sem_pointer < 6:
         message += '\n\n' \
-                   'Информации по вашей выбываемости я не нашёл в своей книжечке 🧐\n' \
-                   f'Если вы думаете, что это ошибка, пожалуйста, обратитесь к  {RESPONSIBLE_FOR_THE_BOT}'
+                   'Информации по вашей выбываемости я не нашёл в своей книжечке 🧐\n'
 
     if redflags:
         message += f'\n\n*Количество редфлагов — *{redflags}.\n'
     return message
+
+
+def to_short_departament_name(long_name):
+    if long_name == "Виртуальный класс":
+        return "ВК"
+    if long_name == "Королёв":
+        return "Королёв"
+    if long_name == "Москва (ВШЭ)":
+        return "ВШЭ"
+    if long_name == "Москва (пр-т Мира)":
+        return "ПМ"
+    if long_name == "Москва (Профсоюзная)":
+        return "ПФ"
+    if long_name == "Пушкино":
+        return "Пушкино"
+    if long_name == "Санкт-Петербург (Новочеркасская)":
+        return "Новочер"
+    if long_name == "Санкт-Петербург (Приморский р-н)":
+        return "Прим"
+    if long_name == "Физтехпарк":
+        return "ФТП"
+    if long_name == "Щёлково":
+        return "Щёлково"
+    if long_name == "Мытищи":
+        return "Мытищи"
 
 
 def current_group_detailing_nps_message(info):
@@ -179,30 +203,33 @@ def current_group_detailing_nps_message(info):
             continue
         line = line.split("\t")
         group = findall(groups_re, line[0])
-        logger.debug(group)
-        logger.debug(line)
-        table.append((f"{group[0][0]}—{group[0][1]}", line[1]))
-    result = result + "`" + tabulate(table, headers=["Группа", "NPS"]) + "`"
+        if len(group[0]) >= 2:
+            table.append(((to_short_departament_name(line[2])), f"{group[0][0]}—{group[0][1]}", line[1]))
+    if table == "":
+        return ""
 
+    logger.debug(table)
+    result += "`" + tabulate(table, headers=["Отдел-е", "Группа", "NPS"]) + "`"
+    result += "\n\n_NPS в этом разделе приведён до вычета выбываемости._"
     return result
-
-
-grade_3_emoji = "😃😄😁😀🥰😍🤠"
-grade_2_emoji = "🙂🙃😊😌🤗😉"
-grade_1_emoji = "🤨🥸🧐😶🤔🙄"
-grade_0_emoji = "😔😒😕🙁😓😶😵‍💫"
-grade_emoji = (grade_0_emoji, grade_1_emoji, grade_2_emoji, grade_3_emoji)
 
 
 def grade_info_message(info, actual_sem=False):
     if not info:
         return ""
-    result = "\n\n*Ваш грейд —  "
     grade = info[0]
-    result += grade + ".*"
+    if int(grade) != 0:
+        result = f"\n\n*В этом семестре премия {grade} категории.* "
+    else:
+        result = f"\n\n*К сожалению, вы не получили премию в этом семестре.*"
     if actual_sem:
         result += f"\n" \
                   f"💭 `{evaluation_indicator_message(grade=int(grade))}`"
-        result += f"\n[Статья о том, как формируются показатели]" \
-                  f"({GRADE_INFO_STATE_LINK})."
+        # result += f"\n[Статья о том, как формируются показатели]" \
+        #           f"({GRADE_INFO_STATE_LINK})."
     return result
+
+
+def grade_state_message():
+    return f"\n\n[Статья о том, как формируются показатели]" \
+           f"({GRADE_INFO_STATE_LINK})."

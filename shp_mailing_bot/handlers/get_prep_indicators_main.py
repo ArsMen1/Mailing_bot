@@ -76,25 +76,31 @@ def get_right_keyboard(prep):
     return None
 
 
-def get_indicators_action(update: Update, context: CallbackContext) -> None:
-    message = update.message.reply_text('Секундочку, чичас поищу')
-
-    prep = Prep(update.effective_user.id, update.effective_user.name)
-    if prep.status == "Работает – ассистент":
-        message.edit_text("Уважаемый асисстент, сейчас у вас нет грейда. Он у вас появится, "
-                          "когда вы обмотаетесь в кокон и превратитесь в прекрасного преподавателя 🦋")
-        return
-
+def get_actual_sem_indicators(prep):
+    if prep.sem_pointer+1 > len(semesters_names) or prep.sem_pointer < 0:
+        return "Повторите запрос, пожалуйста, что-то я запутался :("
     sem = semesters_names[prep.sem_pointer]
     final_message = f"*Семестр {sem}\n\n\n*"
 
-    final_message = final_message + get_indicators(prep) + \
-                    messenger.grade_info_message(
-                        prep.semesters_indicators[sem].grade, actual_sem=(sem == ACTUAL_SEM)) + \
-                    messenger.current_group_detailing_nps_message(
-                        prep.semesters_indicators[
-                            sem].group_detailing)
+    return final_message + get_indicators(prep) + \
+           messenger.grade_info_message(
+               prep.semesters_indicators[sem].grade, actual_sem=(sem == ACTUAL_SEM)) + \
+           messenger.current_group_detailing_nps_message(
+               prep.semesters_indicators[
+                   sem].group_detailing) + \
+           messenger.grade_state_message()
+
+
+def get_indicators_action(update: Update, context: CallbackContext) -> None:
+    message = update.message.reply_text('Секундочку, чичас поищу')
+    prep = Prep(update.effective_user.id, update.effective_user.name)
+    if not prep.status:
+        message.edit_text(messenger.are_you_really_prep_message)
+    if prep.status and prep.status == "Работает – ассистент":
+        message.edit_text("Уважаемый асисстент, сейчас у вас нет грейда. Он у вас появится, "
+                          "когда вы обмотаетесь в кокон и превратитесь в прекрасного преподавателя 🦋")
+        return
+    final_message = get_actual_sem_indicators(prep)
 
     reply_markup = get_right_keyboard(prep)
     message.edit_text(final_message, parse_mode=ParseMode.MARKDOWN, reply_markup=reply_markup)
-    logger.info(f"[{prep.prep_tg_name}] got his indicators:\n{final_message}")

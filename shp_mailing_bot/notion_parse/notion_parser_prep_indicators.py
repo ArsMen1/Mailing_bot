@@ -18,6 +18,6 @@ class NotionParserPrep(NotionParser):
             return None
 
         res = self._find_field_meaning(field)
-        logger.info(f"[{self.tg_name}] {field} = {res}")
+        # logger.info(f"[{self.tg_name}] {field} = {res}")
 
         return res

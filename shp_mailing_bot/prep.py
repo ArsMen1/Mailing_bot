@@ -37,6 +37,9 @@ class Prep:
         self.id: int = prep_id
         self.prep_tg_name: str = prep_tg_name
         self.info: [NotionParserPrep] = NotionParserPrep(self.id, self.prep_tg_name).read_database()
+        if not self.info:
+            self.status = None
+            return
         self.status: str = self.info.get_field_info("Статус")
         self.does_exists: bool = bool((self.status != "Уволен") and self.info)
         if not self.does_exists:
@@ -65,10 +68,10 @@ class Prep:
             votes_detailing = self.info.get_field_info(f"Детализация по голосам {sem}")
             if not votes_detailing:
                 votes_detailing = [None] * 4
-                logger.info(f"[{self.prep_tg_name}] has no nps percent detailing.")
+                # logger.info(f"[{self.prep_tg_name}] has no nps percent detailing.")
             else:
                 votes_detailing = votes_detailing.split()
-                logger.debug(votes_detailing)
+                # logger.debug(votes_detailing)
 
             sem_info = self.IndicatorsItem(
                 self.info.get_field_info(f"NPS {sem}"),
