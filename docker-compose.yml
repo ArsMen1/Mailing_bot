@@ -22,7 +22,7 @@ services:
      - "443:443"
     environment:
       PROXY_ONE: http://bot:5000
-      PROXY_TWO: http://bot:5001
+      PROXY_TWO: https://script.google.com/macros/s/AKfycbzdhpV0t5g5HxwqtAKTIc1U0BRTbEIXPNsrjCRkww/exec
 
 networks:
  bot_network:

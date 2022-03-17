@@ -11,7 +11,7 @@ from logger_bot import logger
 def main():
     try:
         logger.info('Starting...')
-        updater = Updater(token=config.TELEGRAM_BOT_TOKEN_TEST)
+        updater = Updater(token=config.TELEGRAM_BOT_TOKEN)
         logger.info('Connection to telegram API established.')
 
         init_dispatcher(updater)
