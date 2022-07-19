@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -10,48 +11,49 @@ import (
 )
 
 func main() {
-	port := ":443"
+	port := ":5001"
 	proxy1 := os.Getenv("PROXY_ONE")
 	proxy2 := os.Getenv("PROXY_TWO")
-        fmt.Printf("(proxy1: %v \nproxy2: %v\n", proxy1, proxy2)
+	fmt.Printf("(proxy1: %v \nproxy2: %v\n", proxy1, proxy2)
 
-	// go StartLogServer("server1", port1)
-	// go StartLogServer("server2", port2)
-
-	main_server := http.NewServeMux()
+	mainServer := http.NewServeMux()
 	// handle all requests to your server using the proxy
-	main_server.HandleFunc("/", ProxyRequestHandler(proxy1, proxy2))
+	mainServer.HandleFunc("/", ProxyRequestHandler(proxy1, proxy2))
 	fmt.Printf("started main server on port: %s \n", port)
-	log.Fatal(http.ListenAndServeTLS(port, "cert.pem", "key.pem", main_server))
+	log.Fatal(http.ListenAndServe(port, mainServer))
 }
 
 // ProxyRequestHandler handles the http request using proxy
 func ProxyRequestHandler(proxy1, proxy2 string) func(http.ResponseWriter, *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
-                fmt.Println("new request")
-                fmt.Println("_______________________")
+		fmt.Println("new req")
 		body, _ := ioutil.ReadAll(r.Body)
-		buf1 := ioutil.NopCloser(bytes.NewBuffer(body))
-		buf2 := ioutil.NopCloser(bytes.NewBuffer(body))
-		_, err := http.Post(proxy1, "application/json", buf1)
+		fmt.Printf("%s \n", body)
+		var jBody map[string]interface{}
+		err := json.Unmarshal(body, &jBody)
+
 		if err != nil {
-			fmt.Printf("proxy1 post: %v", err)
+			fmt.Printf("error during json unmarshal %s \n", err)
+			w.WriteHeader(http.StatusBadRequest)
+			w.Write([]byte("cant parse"))
+			return
 		}
-		_, err = http.Post(proxy2, "application/json", buf2)
-		if err != nil {
-			fmt.Printf("proxy2 post: %v", err)
+
+		if _, ok := jBody["update_id"]; !ok{
+			fmt.Println("no update_id in body")
+			w.WriteHeader(http.StatusBadRequest)
+			w.Write([]byte("cant parse"))
+			return
+		}
+
+		if _, err := http.Post(proxy1, "application/json", bytes.NewBuffer(body)); err != nil {
+			fmt.Printf("proxy1 post err: %v \n", err)
+		}
+
+		if _, err = http.Post(proxy2, "application/json", bytes.NewBuffer(body)); err != nil {
+			fmt.Printf("proxy2 post err: %v \n", err)
 		}
 		w.Write([]byte("ok"))
-                fmt.Println("_______________________")
 	}
 }
-
-// func StartLogServer(serverName, port string) {
-// 	server := http.NewServeMux()
-// 	server.HandleFunc("/", func(rw http.ResponseWriter, r *http.Request) {
-// 		fmt.Printf("%v: %v \n", serverName, "hi")
-// 	})
-// 	fmt.Printf("started server: %s on port %s \n", serverName, port)
-// 	log.Fatal(http.ListenAndServe(port, server))
-// }
-
+Footer
