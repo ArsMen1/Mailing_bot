@@ -23,8 +23,7 @@ def main():
         updater.start_webhook(listen='0.0.0.0',
                               port=5000,
                               url_path='',
-                              cert='cert.pem',
-                              webhook_url='https://176.99.11.201:443/')
+                              webhook_url='https://mshpteacherbot.informatics.ru/secretbotfff')
         updater.idle()
     except InvalidToken:
         logger.critical(
