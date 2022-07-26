@@ -7,7 +7,7 @@ from logger_bot import logger
 from shp_mailing_bot.config import RESPONSIBLE_FOR_THE_BOT, GET_NEXT_SEM, GET_PREV_SEM
 from shp_mailing_bot.message_creator import get_name_patronymic, are_you_really_prep_message
 
-from shp_mailing_bot.handlers import get_prep_indicators_main, knowledge_base_link
+from shp_mailing_bot.handlers import get_prep_indicators_main, knowledge_base_link, get_support_ea_tg
 from shp_mailing_bot.prep import Prep
 
 
@@ -68,6 +68,8 @@ def init_dispatcher(updater: Update):
     # get next semester handler
 
     dispatcher.add_handler(CommandHandler('knowledge_base', knowledge_base_link.get_kd_link_action))
+
+    dispatcher.add_handler(CommandHandler('get_support_eduApp', get_support_ea_tg.get_support_ea))
 
     dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, undefined_message_action))
 
