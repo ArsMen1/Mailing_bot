@@ -17,24 +17,34 @@ double_keyboard = InlineKeyboardMarkup([[InlineKeyboardButton("Предыдущ�
                                         ])
 
 
-def is_there_sem_ahead(prep):
-    pointer = prep.sem_pointer
+def get_indicators_action(update: Update, context: CallbackContext) -> None:
+    message = update.message.reply_text('Секундочку, чичас поищу')
+    prep = Prep(update.effective_user.id, update.effective_user.name)
+    if not prep.status:
+        message.edit_text(messenger.are_you_really_prep_message)
+    if prep.status and prep.status == "Работает – ассистент":
+        message.edit_text("Уважаемый асисстент, сейчас у вас нет грейда. Он у вас появится, "
+                          "когда вы обмотаетесь в кокон и превратитесь в прекрасного преподавателя 🦋")
+        return
+    final_message = get_actual_sem_indicators(prep)
 
-    for i in range(1, len(semesters_names) - pointer):
-        if len(semesters_names) > pointer + i \
-                and prep.semesters_indicators[semesters_names[pointer + i]] \
-                and any(prep.semesters_indicators[semesters_names[pointer + i]]):
-            return True
+    reply_markup = get_right_keyboard(prep)
+    message.edit_text(final_message, parse_mode=ParseMode.MARKDOWN, reply_markup=reply_markup)
 
 
-def is_there_sem_behind(prep):
-    pointer = prep.sem_pointer
+def get_actual_sem_indicators(prep):
+    if prep.sem_pointer + 1 > len(semesters_names) or prep.sem_pointer < 0:
+        return "Повторите запрос, пожалуйста, что-то я запутался :("
+    sem = semesters_names[prep.sem_pointer]
+    final_message = f"*Семестр {sem}\n\n\n*"
 
-    for i in range(1, pointer):
-        if pointer > 0 \
-                and prep.semesters_indicators[semesters_names[pointer - i]] \
-                and any(prep.semesters_indicators[semesters_names[pointer - i]]):
-            return True
+    return final_message + get_indicators(prep) + \
+           messenger.grade_info_message(
+               prep.semesters_indicators[sem].grade, actual_sem=(sem == ACTUAL_SEM)) + \
+           messenger.current_group_detailing_nps_message(
+               prep.semesters_indicators[
+                   sem].group_detailing) + \
+           messenger.grade_state_message()
 
 
 def get_indicators(prep: Prep) -> Union[str, None]:
@@ -76,31 +86,21 @@ def get_right_keyboard(prep):
     return None
 
 
-def get_actual_sem_indicators(prep):
-    if prep.sem_pointer+1 > len(semesters_names) or prep.sem_pointer < 0:
-        return "Повторите запрос, пожалуйста, что-то я запутался :("
-    sem = semesters_names[prep.sem_pointer]
-    final_message = f"*Семестр {sem}\n\n\n*"
+def is_there_sem_ahead(prep):
+    pointer = prep.sem_pointer
 
-    return final_message + get_indicators(prep) + \
-           messenger.grade_info_message(
-               prep.semesters_indicators[sem].grade, actual_sem=(sem == ACTUAL_SEM)) + \
-           messenger.current_group_detailing_nps_message(
-               prep.semesters_indicators[
-                   sem].group_detailing) + \
-           messenger.grade_state_message()
+    for i in range(1, len(semesters_names) - pointer):
+        if len(semesters_names) > pointer + i \
+                and prep.semesters_indicators[semesters_names[pointer + i]] \
+                and any(prep.semesters_indicators[semesters_names[pointer + i]]):
+            return True
 
 
-def get_indicators_action(update: Update, context: CallbackContext) -> None:
-    message = update.message.reply_text('Секундочку, чичас поищу')
-    prep = Prep(update.effective_user.id, update.effective_user.name)
-    if not prep.status:
-        message.edit_text(messenger.are_you_really_prep_message)
-    if prep.status and prep.status == "Работает – ассистент":
-        message.edit_text("Уважаемый асисстент, сейчас у вас нет грейда. Он у вас появится, "
-                          "когда вы обмотаетесь в кокон и превратитесь в прекрасного преподавателя 🦋")
-        return
-    final_message = get_actual_sem_indicators(prep)
+def is_there_sem_behind(prep):
+    pointer = prep.sem_pointer
 
-    reply_markup = get_right_keyboard(prep)
-    message.edit_text(final_message, parse_mode=ParseMode.MARKDOWN, reply_markup=reply_markup)
+    for i in range(1, pointer):
+        if pointer > 0 \
+                and prep.semesters_indicators[semesters_names[pointer - i]] \
+                and any(prep.semesters_indicators[semesters_names[pointer - i]]):
+            return True
