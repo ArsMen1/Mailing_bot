@@ -8,3 +8,6 @@ __pycache__
 /venv
 .idea
 YOURPRIVATE.key
+cert.pem
+key.pem
+temp.py

@@ -22,8 +22,9 @@ def get_indicators_action(update: Update, context: CallbackContext) -> None:
     prep = Prep(update.effective_user.id, update.effective_user.name)
     if not prep.status:
         message.edit_text(messenger.are_you_really_prep_message)
+        return
     if prep.status and prep.status == "Работает – ассистент":
-        message.edit_text("Уважаемый асисстент, сейчас у вас нет грейда. Он у вас появится, "
+        message.edit_text("Уважаемый асcистент, сейчас у вас нет грейда. Он у вас появится, "
                           "когда вы обмотаетесь в кокон и превратитесь в прекрасного преподавателя 🦋")
         return
     final_message = get_actual_sem_indicators(prep)

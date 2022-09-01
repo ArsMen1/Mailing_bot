@@ -22,8 +22,12 @@ class NotionParserAverageMeans(NotionParser):
 
     def get_average_indicators(self):
         _average_indicators = self.read_database()
+        if not _average_indicators:
+            logger.error("No _average_indicators")
+            return
         AverageIndicatorsItem: [namedtuple] = namedtuple("AverageIndicatorsItem", ["nps", "retirement"])
         average_indicators: [dict] = dict.fromkeys(semesters_names)
+
 
         for sem in average_indicators.keys():
             average_indicators[sem] = AverageIndicatorsItem(

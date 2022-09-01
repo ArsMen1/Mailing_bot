@@ -11,18 +11,6 @@ class Prep:
     preps_cashed_list = TTLCache(maxsize=200, ttl=ttl)
     average_indicators = NotionParserAverageMeans().get_average_indicators()
 
-    # getting average indicators for each semester
-    # _average_indicators = NotionParserAverageMeans().read_database()
-    # AverageIndicatorsItem: [namedtuple] = namedtuple("AverageIndicatorsItem", ["nps", "retirement"])
-    # average_indicators: [dict] = dict.fromkeys(semesters_names)
-
-    # for sem in average_indicators.keys():
-    #     average_indicators[sem] = AverageIndicatorsItem(
-    #         _average_indicators.get_field_info(f"NPS {sem}"),
-    #         _average_indicators.get_field_info(f"Выбываемость {sem}"))
-    # del _average_indicators
-    # del AverageIndicatorsItem
-
     def __new__(cls, prep_id: int, prep_tg_name: str):
         if prep_id not in cls.preps_cashed_list:
             cls.preps_cashed_list[prep_id] = super().__new__(cls)
@@ -41,7 +29,7 @@ class Prep:
             self.status = None
             return
         self.status: str = self.info.get_field_info("Статус")
-        self.does_exists: bool = bool((self.status != "Уволен") and self.info)
+        self.does_exists: bool = bool((self.status != "Больше не работает в компании") and self.info)
         if not self.does_exists:
             logger.debug(
                 f"[{self.prep_tg_name}] is {self.status}, {self.info=}. His instance is None. That's what I say.")
@@ -63,6 +51,9 @@ class Prep:
 
         self.sem_pointer: [int] = len(semesters_names) - 1
 
+        self._create_indicators_storage()
+
+    def _create_indicators_storage(self):
         for sem in self.semesters_indicators.keys():
 
             votes_detailing = self.info.get_field_info(f"Детализация по голосам {sem}")
@@ -87,11 +78,7 @@ class Prep:
         logger.debug(f"[{self.prep_tg_name}] created prep instance.")
 
         """
-        Turns self.semester_indicators into something like that:
+        self.semester_indicators into something like that:
         {'20/21-II': IndicatorsItem(nps='87,30%', retirement='4,00%', redflags=None),
-        '20/21-I': IndicatorsItem(nps='84,85%', retirement='9,68%', redflags=None),
-        '19/20-II': IndicatorsItem(nps=None, retirement=None, redflags=None),
-        '19/20-I': IndicatorsItem(nps=None, retirement=None, redflags=None),
-        '18/19-II': IndicatorsItem(nps=None, retirement=None, redflags=None),
-        '18/19-I': IndicatorsItem(nps=None, retirement=None, redflags=None)}
+        '20/21-I': IndicatorsItem(nps='84,85%', retirement='9,68%', redflags=None)...}
         """

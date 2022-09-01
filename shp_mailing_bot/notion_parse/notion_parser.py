@@ -2,10 +2,11 @@ from requests import request
 import shp_mailing_bot.config as config
 from logger_bot import logger
 from json import dump
+from shp_mailing_bot.notion_parse.notion_filter_constructor import FilterConstructor
 
 
 class NotionParser:
-    def __init__(self, prep_id: int, tg_name: str = None):
+    def __init__(self, prep_id: int, tg_name: str = ""):
         self.response = None
         self.prep_id = prep_id
         self.prep_info = None
@@ -17,9 +18,7 @@ class NotionParser:
             "Content-Type": "application/json",
             "Notion-Version": "2021-05-13",
         }
-        self.body = {"filter":
-                         {"property": "Telegram ID", "number": {"equals": self.prep_id}},
-                     }
+        self.body = FilterConstructor(self.prep_id, self.tg_name).create_filter()
 
     def read_database(self):
         read_url = f"https://api.notion.com/v1/databases/{self.database_id}/query"
@@ -27,19 +26,18 @@ class NotionParser:
         res = request("POST", read_url, headers=self.headers, json=self.body)
         self.response = res.json()
 
+        logger.info(f"{res.json()=}")
         if res.status_code != 200:
-            logger.debug(f"{res.status_code=} for user {self.prep_id}")
-            logger.debug(f"{self.response}")
+            logger.error(f"{res.status_code=} for user {self.prep_id}")
+            logger.info(f"{self.response}")
             self.response = None
 
-        if not self.response["results"]:
+        if not self.response or not self.response["results"]:
             return
         if "properties" in self.response["results"][0]:
             self.prep_info = self.response["results"][0]["properties"]
 
-        # with open('./db.json', 'w', encoding='utf8') as f:
-        #     dump(self.response, f, ensure_ascii=False)
-        logger.debug(f"I have read a database, it's nothing interesting there: {self.prep_info}")
+        logger.debug(f"I have read a database: {self.prep_info}")
         return self
 
     def _find_field_meaning(self, field: str):
