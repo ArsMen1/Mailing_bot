@@ -7,7 +7,7 @@ from logger_bot import logger
 from shp_mailing_bot.config import RESPONSIBLE_FOR_THE_BOT, GET_NEXT_SEM, GET_PREV_SEM
 from shp_mailing_bot.message_creator import get_name_patronymic, are_you_really_prep_message
 
-from shp_mailing_bot.handlers import get_prep_indicators_main, knowledge_base_link
+from shp_mailing_bot.handlers import get_prep_indicators_main, knowledge_base_link, get_support_informatics
 from shp_mailing_bot.prep import Prep
 
 
@@ -55,6 +55,7 @@ def init_dispatcher(updater: Update):
 
     dispatcher.add_handler(CommandHandler('help', help_action))
 
+
     dispatcher.add_handler(CommandHandler('get_indicators', get_prep_indicators_main.get_indicators_action))
 
     dispatcher.add_handler(CallbackQueryHandler(
@@ -69,6 +70,9 @@ def init_dispatcher(updater: Update):
 
     dispatcher.add_handler(CommandHandler('knowledge_base', knowledge_base_link.get_kd_link_action))
 
+    dispatcher.add_handler(CommandHandler('get_support_informatics', get_support_informatics.get_support_informatics))
+
     dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, undefined_message_action))
 
     logger.info('Dispatcher initialized successfully.')
+
