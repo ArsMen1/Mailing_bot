@@ -56,4 +56,3 @@ func ProxyRequestHandler(proxy1, proxy2 string) func(http.ResponseWriter, *http.
 		w.Write([]byte("ok"))
 	}
 }
-Footer

@@ -55,6 +55,7 @@ def init_dispatcher(updater: Update):
 
     dispatcher.add_handler(CommandHandler('help', help_action))
 
+
     dispatcher.add_handler(CommandHandler('get_indicators', get_prep_indicators_main.get_indicators_action))
 
     dispatcher.add_handler(CallbackQueryHandler(
@@ -74,3 +75,4 @@ def init_dispatcher(updater: Update):
     dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, undefined_message_action))
 
     logger.info('Dispatcher initialized successfully.')
+
