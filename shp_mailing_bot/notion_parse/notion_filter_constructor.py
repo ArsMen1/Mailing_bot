@@ -13,13 +13,15 @@ class FilterConstructor:
         return self.base_filter
 
     def construct(self):
+        if self.tg_id:
+            logger.info(f"Here tg id: {self.tg_id}")
+            self.add_tg_id_to_filter()
+            return
         if self.tg_username and self.tg_username.startswith("@"):
             logger.info(f"Here username: {self.tg_username}")
             self.add_username_to_filter()
             return
-        if self.tg_id:
-            logger.info(f"Here tg id: {self.tg_id}")
-            self.add_tg_id_to_filter()
+
 
     def add_username_to_filter(self):
         self.base_filter["filter"] = {"or": [{"property": "Telegram username",
