@@ -25,4 +25,4 @@ GET_CURR_SEM = 'Показатели'
 GET_NEXT_SEM = "Следующий семестр"
 GET_PREV_SEM = "Прошлый семестр"
 
-ttl = 10 * 60  # ttl - seconds
+ttl = 5 * 60  # ttl - seconds

@@ -17,30 +17,8 @@ class FilterConstructor:
             logger.info(f"Here tg id: {self.tg_id}")
             self.add_tg_id_to_filter()
             return
-        if self.tg_username and self.tg_username.startswith("@"):
-            logger.info(f"Here username: {self.tg_username}")
-            self.add_username_to_filter()
-            return
-
-
-    def add_username_to_filter(self):
-        self.base_filter["filter"] = {"or": [{"property": "Telegram username",
-                                              "rollup": {
-                                                  "any": {
-                                                      "text": {
-                                                          "equals": self.tg_username
-                                                      }
-                                                  }
-                                              }
-                                              },
-                                             {"property": "Telegram username",
-                                              "rollup": {
-                                                  "any": {
-                                                      "text": {
-                                                          "equals": self.tg_username[1:]
-                                                      }
-                                                  }
-                                              }}]}
+        else:
+            logger.warning(f"No tg id for user {self.tg_username}")
 
     def add_tg_id_to_filter(self):
         self.base_filter["filter"] = {"property": "Telegram ID",
