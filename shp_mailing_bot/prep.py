@@ -35,6 +35,7 @@ class Prep:
                 f"[{self.prep_tg_name}] is {self.status}, {self.info=}. His instance is None. That's what I say.")
             return
         self.name: str = self.info.get_field_info("Преподаватель")
+        self.personal_page_link = self.get_personal_page_link()
         if self.status == "Работает – ассистент":
             return
         self.IndicatorsItem: [namedtuple] = namedtuple("IndicatorsItem",
@@ -46,23 +47,25 @@ class Prep:
                                                         "redflags",
                                                         "group_detailing",
                                                         "grade"])
-        self.semesters_indicators: [dict] = dict.fromkeys(semesters_names)
-        # self.semesters_indicators={'18/19-I': None, '18/19-II': None, '19/20-I': None...}
+        self.semesters_indicators: [dict] = \
+            dict.fromkeys(semesters_names)  # self.semesters_indicators={'18/19-I': None, '18/19-II': None ... }
 
         self.sem_pointer: [int] = len(semesters_names) - 1
 
         self._create_indicators_storage()
 
+    def get_personal_page_link(self) -> str:
+        data_page: list = self.info.get_field_info("Личные страницы преподавателей")
+        if not data_page:
+            return ""
+        page_id: str = data_page[0]["id"]
+        result = "https://www.notion.so/mshp/"
+        result += page_id.replace("-", "")
+        return result
+
     def _create_indicators_storage(self):
         for sem in self.semesters_indicators.keys():
-
-            votes_detailing = self.info.get_field_info(f"Детализация по голосам {sem}")
-            if not votes_detailing:
-                votes_detailing = [None] * 4
-                # logger.info(f"[{self.prep_tg_name}] has no nps percent detailing.")
-            else:
-                votes_detailing = votes_detailing.split()
-                # logger.debug(votes_detailing)
+            votes_detailing = self._get_votes_detailing_list(sem)
 
             sem_info = self.IndicatorsItem(
                 self.info.get_field_info(f"NPS {sem}"),
@@ -82,3 +85,10 @@ class Prep:
         {'20/21-II': IndicatorsItem(nps='87,30%', retirement='4,00%', redflags=None),
         '20/21-I': IndicatorsItem(nps='84,85%', retirement='9,68%', redflags=None)...}
         """
+
+    def _get_votes_detailing_list(self, sem):
+        votes_detailing = self.info.get_field_info(f"Детализация по голосам {sem}")
+        if not votes_detailing:
+            return [None] * 4
+        else:
+            return votes_detailing.split()

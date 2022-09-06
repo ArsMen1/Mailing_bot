@@ -60,6 +60,11 @@ class NotionParser:
             logger.debug(f"[{self.tg_name}] there is no title {field=}, he looks like anonymous")
             return None
 
+        elif field_type == "relation":
+            if not len(self.prep_info[field]["relation"]):
+                return
+            return self.prep_info[field]["relation"]
+
         elif field_type == "rollup":  # rollup
             if self.prep_info[field]["rollup"]["array"] and \
                     self.prep_info[field]["rollup"]["array"][0]["type"] == "select" and \

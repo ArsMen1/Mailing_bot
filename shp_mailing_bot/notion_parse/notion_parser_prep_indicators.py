@@ -9,7 +9,7 @@ class NotionParserPrep(NotionParser):
     def __init__(self, prep_id: int, tg_name: str):
         super().__init__(prep_id, tg_name)
 
-    def get_field_info(self, field: str = f"NPS {ACTUAL_SEM}"):
+    def get_field_info(self, field: str):
         if not self.prep_info:
             logger.debug(f"[{self.tg_name}] no info about him. Return None")
             return None

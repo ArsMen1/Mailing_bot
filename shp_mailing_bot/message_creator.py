@@ -27,6 +27,17 @@ def kd_link_message() -> str:
     return choice(db_phrases)
 
 
+def get_personal_page_phrase() -> str:
+    page_phrases = (
+        "Пожалуйста.",
+        'Вот ссылочка. И больше не теряйте 🙃',
+        'Вот же она!',
+        'Вот, не благодарите',
+        'Ваша страничка ниже'
+    )
+    return choice(page_phrases)
+
+
 def evaluation_indicator_message(grade: int = None) -> str:  # get comment for nps or retirement
 
     # phrases
