@@ -222,5 +222,4 @@ def grade_info_message(info, actual_sem=False):
 
 
 def grade_state_message():
-    return f"\n\n[Статья о том, как формируются показатели]" \
-           f"({GRADE_INFO_STATE_LINK})."
+    return f"\n\n[Статья о том, как формируются показатели]({GRADE_INFO_STATE_LINK})."
