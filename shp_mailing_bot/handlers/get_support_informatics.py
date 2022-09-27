@@ -15,9 +15,5 @@ def get_support_informatics(update: Update, context: CallbackContext):
     reply_markup = InlineKeyboardMarkup(keyboard)
 
     update.message.reply_text(f"@supinformatics — сюда вы можете обратиться, если у вас возникла проблема с Информатикс."
-        f"\nПоддержка работает 5/2 с 9:30 до 18:00 ☘.",
+        f"\nПоддержка работает 5/2 с 9:30 до 18:00 ☘",
                               reply_markup=reply_markup)
-    # update.message.reply_text(
-    #     f"@supinformatics — сюда вы можете обратиться, если у вас возникла проблема с Информатикс."
-    #     f"\nПоддержка работает 5/2 с 9:30 до 18:00 ☘."
-    # )
