@@ -91,4 +91,7 @@ class Prep:
         if not votes_detailing:
             return [None] * 4
         else:
-            return votes_detailing.split()
+            votes_detailing = votes_detailing.split()
+            if len(votes_detailing) <= 2:
+                votes_detailing.extend([None] * (3 - len(votes_detailing)))
+            return votes_detailing

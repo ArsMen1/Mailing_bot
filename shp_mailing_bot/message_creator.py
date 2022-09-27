@@ -190,18 +190,28 @@ def current_group_detailing_nps_message(info):
     groups_re = \
         r'^((?:\-[a-zA-Z]|[\s\/+a-zA-ZА-Яа-яёЁ])+)(?:-\d)?(?:_base_\d*|_spec_\d*)?(?:[_\w,]+?)?-((?:\w+,?)+)-(?:(\d\d/\d\d)|(\d\d)).*$'
     for line in info:
-        # line = [FORMAT_base_1-M204-21/22-I\t90,54%]
+        # line = [FORMAT_base_1-M204-21/22-I\t90,54%\tМытищи]
         if line == "":
             continue
         line = line.split("\t")
         group = findall(groups_re, line[0])
-        if len(group[0]) >= 2:
+        logger.debug(f"{group=}")
+        logger.debug(f"{line=}")
+        if len(line) == 3:
             table.append(((to_short_departament_name(line[2])), f"{group[0][0]}—{group[0][1]}", line[1]))
+        elif len(line) == 2:
+            table.append((f"{group[0][0]}—{group[0][1]}", line[1]))
     if table == "":
         return ""
 
     logger.debug(table)
-    result += "`" + tabulate(table, headers=["Отдел-е", "Группа", "NPS"]) + "`"
+    headers = None
+    if len(table[0]) == 3:
+        headers = ["Отдел-е", "Группа", "NPS"]
+    elif len(table[0]) == 2:
+        headers = ["Группа", "NPS"]
+
+    result += "`" + tabulate(table, headers=headers) + "`"
     result += "\n\n_NPS в этом разделе приведён до вычета выбываемости._"
     return result
 
