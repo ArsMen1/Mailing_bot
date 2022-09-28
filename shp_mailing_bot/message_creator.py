@@ -194,14 +194,24 @@ def current_group_detailing_nps_message(info):
         if line == "":
             continue
         line = line.split("\t")
+        if len(line) == 1:
+            line = str(line[0]).split("   ")
+            if len(line) == 1:
+                line = str(line[0]).split(" ")
         group = findall(groups_re, line[0])
+        if not group:
+            group = [(line[0].split("_")[0], line[0].split("-")[1]),]
+            group = None
+            logger.info(line[0].split("-"))
+            if not group:
+                group = (line[0].split("-")[:2],)
         logger.debug(f"{group=}")
         logger.debug(f"{line=}")
-        if len(line) == 3:
+        if len(group[0]) >= 2 and len(line) == 3:
             table.append(((to_short_departament_name(line[2])), f"{group[0][0]}—{group[0][1]}", line[1]))
-        elif len(line) == 2:
+        elif len(group[0]) >= 2 and len(line) == 2:
             table.append((f"{group[0][0]}—{group[0][1]}", line[1]))
-    if table == "":
+    if not table or table == "":
         return ""
 
     logger.debug(table)
