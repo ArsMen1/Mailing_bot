@@ -177,6 +177,9 @@ def to_short_departament_name(long_name):
         return "Щёлково"
     if long_name == "Мытищи":
         return "Мытищи"
+    if long_name == "Онлайн":
+        return "Онлайн"
+    # todo добавить октябрьское поле
 
 
 def current_group_detailing_nps_message(info):

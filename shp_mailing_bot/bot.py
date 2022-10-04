@@ -8,7 +8,7 @@ from shp_mailing_bot.config import RESPONSIBLE_FOR_THE_BOT, GET_NEXT_SEM, GET_PR
 from shp_mailing_bot.message_creator import get_name_patronymic, are_you_really_prep_message
 
 from shp_mailing_bot.handlers import get_prep_indicators_main, knowledge_base_link, get_support_informatics, \
-    get_personal_page
+    get_personal_page, get_constructors_links
 from shp_mailing_bot.prep import Prep
 
 
@@ -69,6 +69,7 @@ def init_dispatcher(updater: Update):
     # get next semester handler
 
     dispatcher.add_handler(CommandHandler('knowledge_base', knowledge_base_link.get_kd_link_action))
+    dispatcher.add_handler(CommandHandler('constructors', get_constructors_links.get_constructors_links))
     dispatcher.add_handler(CommandHandler('personal_page', get_personal_page.get_personal_page_action))
 
     dispatcher.add_handler(CommandHandler('get_support_informatics', get_support_informatics.get_support_informatics))
