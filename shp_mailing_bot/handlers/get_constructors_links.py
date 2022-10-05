@@ -13,8 +13,8 @@ def get_constructors_links(update: Update, context: CallbackContext) -> None:
         return
 
     keyboard = [
-        [InlineKeyboardButton('Конструктор урока – M/D', url=LESSON_CONSTRUCTOR_MD)],
-        [InlineKeyboardButton('Конструктор урока – J/A', url=LESSON_CONSTRUCTOR_JA)]
+        [InlineKeyboardButton('Конструктор урока – J/A', url=LESSON_CONSTRUCTOR_JA)],
+        [InlineKeyboardButton('Конструктор урока – M/D', url=LESSON_CONSTRUCTOR_MD)]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
 

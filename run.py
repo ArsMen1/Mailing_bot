@@ -11,19 +11,19 @@ from logger_bot import logger
 def main():
     try:
         logger.info('Starting...')
-        updater = Updater(token=config.TELEGRAM_BOT_TOKEN)
+        updater = Updater(token=config.TELEGRAM_BOT_TOKEN_TEST)
         logger.info('Connection to telegram API established.')
 
         init_dispatcher(updater)
 
         logger.info('The bot is alive.')
 
-        # updater.start_polling()
+        updater.start_polling()
 
-        updater.start_webhook(listen='0.0.0.0',
-                              port=5000,
-                              url_path='',
-                              webhook_url='https://mshpteacherbot.informatics.ru/secretbotfff')
+        # updater.start_webhook(listen='0.0.0.0',
+        #                       port=5000,
+        #                       url_path='',
+        #                       webhook_url='https://mshpteacherbot.informatics.ru/secretbotfff')
         updater.idle()
     except InvalidToken:
         logger.critical(
