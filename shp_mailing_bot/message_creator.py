@@ -201,6 +201,9 @@ def current_group_detailing_nps_message(info):
             line = str(line[0]).split("   ")
             if len(line) == 1:
                 line = str(line[0]).split(" ")
+                if len(line) > 3:
+                    line[2] = " ".join(line[2:])
+                    line = line[:3]
         group = findall(groups_re, line[0])
         if not group:
             group = [(line[0].split("_")[0], line[0].split("-")[1]),]
