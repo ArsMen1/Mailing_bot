@@ -20,7 +20,7 @@ TG_ID_MEAN_INDICATORS = 1000000  # tg id for getting average meanings
 semesters_names = ["18/19-I", "18/19-II", "19/20-I", "19/20-II", "20/21-I", "20/21-II", "21/22-I", "21/22-II"]
 # change it every semester
 ACTUAL_SEM = semesters_names[len(semesters_names) - 1]
-RESPONSIBLE_FOR_THE_BOT = "@ktrntrsv"
+RESPONSIBLE_FOR_THE_BOT = "@PimenovaYuliya"
 
 GET_KD_LINK_BUTTON = 'База знаний'
 GET_CURR_SEM = 'Показатели'

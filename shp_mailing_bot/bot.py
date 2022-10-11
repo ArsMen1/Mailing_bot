@@ -5,6 +5,7 @@ from telegram.ext import CommandHandler, MessageHandler, Filters, CallbackContex
 import shp_mailing_bot.handlers.get_prep_indicators_semester_navigation
 from logger_bot import logger
 from shp_mailing_bot.config import RESPONSIBLE_FOR_THE_BOT, GET_NEXT_SEM, GET_PREV_SEM
+from shp_mailing_bot.handlers.get_support_bot import help_action
 from shp_mailing_bot.message_creator import get_name_patronymic, are_you_really_prep_message
 
 from shp_mailing_bot.handlers import get_prep_indicators_main, knowledge_base_link, get_support_informatics, \
@@ -33,15 +34,6 @@ def start_action(update: Update, context: CallbackContext) -> None:
     logger.info(f'[{prep.prep_tg_name}] start message sent.')
 
 
-def help_action(update: Update, context: CallbackContext):
-    update.message.reply_text(
-        'Если вы столкнулись с проблемой, связанной со мной, '
-        'чувствуете злость, негодование, обиду, презрение или просто растерянность, '
-        'вдохните и выдохните на 10 счётов 🧘 \n\n'
-        f'А потом напишите {RESPONSIBLE_FOR_THE_BOT}. \nЭто моя мамочка, она будет рада обратной связи.')
-    logger.info(f"[{update.effective_user.name}] help message sent.")
-
-
 def undefined_message_action(update: Update, context: CallbackContext):
     update.message.reply_text('Не уверен, что понятийно 🥺\n'
                               'Я ещё не очень хорошо говорить русски, я молодой бот. \n'
@@ -53,8 +45,6 @@ def init_dispatcher(updater: Update):
     dispatcher = updater.dispatcher
 
     dispatcher.add_handler(CommandHandler('start', start_action))
-
-    dispatcher.add_handler(CommandHandler('help', help_action))
 
     dispatcher.add_handler(CommandHandler('get_indicators', get_prep_indicators_main.get_indicators_action))
 
@@ -73,6 +63,7 @@ def init_dispatcher(updater: Update):
     dispatcher.add_handler(CommandHandler('personal_page', get_personal_page.get_personal_page_action))
 
     dispatcher.add_handler(CommandHandler('get_support_informatics', get_support_informatics.get_support_informatics))
+    dispatcher.add_handler(CommandHandler('help', help_action))
 
     dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, undefined_message_action))
 
