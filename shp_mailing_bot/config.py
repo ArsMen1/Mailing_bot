@@ -7,7 +7,7 @@ TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 TELEGRAM_BOT_TOKEN_TEST = os.getenv('TELEGRAM_BOT_TOKEN_KATE')
 NOTION_BOT_TOKEN = os.getenv('NOTION_BOT_TOKEN')
 
-KNOWLEDGE_BASE_LINK = 'https://www.notion.so/mshp/185484d383dd46b8bc9d2c130693fff3?v=dcfb3fb534cf4ccba3122631d8e54dec'
+KNOWLEDGE_BASE_LINK = 'https://www.notion.so/mshp/61f27a3dbd11463e90b6f49d70a6624e'
 GRADE_INFO_STATE_LINK = 'https://www.notion.so/mshp/NPS-7b1081b7e47d48dbb58c81adc1aa5acc'
 LESSON_CONSTRUCTOR_MD = 'https://docs.google.com/spreadsheets/d/1eA12VMO1uHlp-ZeTI62DH8hXD_lOPlbjPkOPeAqMv0k/edit#gid=0'
 LESSON_CONSTRUCTOR_JA = 'https://docs.google.com/spreadsheets/d/1oZhZYOKEyOuLJtm15ue2ddiTtaI1jqA4D20aABuK1fo/edit#gid=1141170697'
