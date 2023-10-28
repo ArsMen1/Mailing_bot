@@ -9,7 +9,7 @@ from shp_mailing_bot.handlers.get_support_bot import help_action
 from shp_mailing_bot.message_creator import get_name_patronymic, are_you_really_prep_message
 
 from shp_mailing_bot.handlers import get_prep_indicators_main, knowledge_base_link, get_support_informatics, \
-    get_personal_page, get_constructors_links
+    get_personal_page, get_constructors_links, get_contact_iec
 from shp_mailing_bot.prep import Prep
 
 
@@ -61,7 +61,7 @@ def init_dispatcher(updater: Update):
     dispatcher.add_handler(CommandHandler('knowledge_base', knowledge_base_link.get_kd_link_action))
     dispatcher.add_handler(CommandHandler('constructors', get_constructors_links.get_constructors_links))
     dispatcher.add_handler(CommandHandler('personal_page', get_personal_page.get_personal_page_action))
-
+    dispatcher.add_handler(CommandHandler('contact_wuc', get_contact_iec.get_contact))
     dispatcher.add_handler(CommandHandler('get_support_informatics', get_support_informatics.get_support_informatics))
     dispatcher.add_handler(CommandHandler('help', help_action))
 
